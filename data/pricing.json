@@ -1,0 +1,28 @@
+{
+  "products": {
+    "base": {
+      "name": "Base Rock",
+      "prices": {
+        "3.5": 320,
+        "5.5": 420,
+        "7": 520
+      }
+    },
+    "top-gravel": {
+      "name": "Top Gravel (1\")",
+      "prices": {
+        "3.5": 340,
+        "5.5": 450,
+        "7": 560
+      }
+    },
+    "hybrid": {
+      "name": "Hybrid Base/Surface",
+      "prices": {
+        "3.5": 330,
+        "5.5": 435,
+        "7": 540
+      }
+    }
+  }
+}

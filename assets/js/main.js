@@ -30,4 +30,49 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
   });
+
+  // Pricing calculator
+  function initCalculator() {
+    fetch('data/pricing.json')
+      .then(response => {
+        if (!response.ok) throw new Error('Pricing data not found');
+        return response.json();
+      })
+      .then(pricingData => {
+        const productSelect = document.getElementById('product');
+        const tonnageSelect = document.getElementById('tonnage');
+        const priceResult = document.getElementById('price-result');
+        
+        if (!productSelect || !tonnageSelect || !priceResult) return;
+        
+        // Populate products dropdown
+        productSelect.innerHTML = '<option value="">Select product</option>';
+        Object.keys(pricingData.products).forEach(key => {
+          const product = pricingData.products[key];
+          productSelect.innerHTML += `<option value="${key}">${product.name}</option>`;
+        });
+        
+        // Calculate price function
+        function calculatePrice() {
+          const tonnage = tonnageSelect.value;
+          const productKey = productSelect.value;
+          
+          if (tonnage && productKey && pricingData.products[productKey]?.prices[tonnage]) {
+            const price = pricingData.products[productKey].prices[tonnage];
+            priceResult.textContent = `$${price.toLocaleString()}`;
+          } else {
+            priceResult.textContent = '$0.00';
+          }
+        }
+        
+        // Event listeners
+        tonnageSelect.addEventListener('change', calculatePrice);
+        productSelect.addEventListener('change', calculatePrice);
+      })
+      .catch(err => {
+        console.error('Pricing calculator failed:', err);
+      });
+  }
+  
+  initCalculator();
 });

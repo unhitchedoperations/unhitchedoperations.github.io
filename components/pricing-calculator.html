@@ -1,0 +1,32 @@
+<section id="pricing-calculator" class="pricing-calculator">
+  <h2 class="section-title">Get your price estimate</h2>
+  <div class="calculator-grid">
+    <div class="calc-group">
+      <label>Tonnage</label>
+      <select id="tonnage">
+        <option value="">Select tonnage</option>
+        <option value="3.5">3.5 tons</option>
+        <option value="5.5">5.5 tons</option>
+        <option value="7">7 tons</option>
+      </select>
+    </div>
+    
+    <div class="calc-group">
+      <label>Product</label>
+      <select id="product">
+        <option value="">Select product</option>
+        <!-- Populated by JS -->
+      </select>
+    </div>
+    
+    <div class="calc-group result">
+      <label>Estimated Price</label>
+      <div id="price-result">$0.00</div>
+    </div>
+  </div>
+  
+  <p class="calc-note">
+    *Includes delivery, tailgate spreading, and light raking. 
+    Final price may vary based on distance and site conditions.
+  </p>
+</section>
