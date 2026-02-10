@@ -1,28 +1,28 @@
-// Simple example: keep footer year current
 document.addEventListener("DOMContentLoaded", () => {
+  // Footer year
   const yearEl = document.getElementById("year");
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
-});
 
-// Load card components dynamically
-document.addEventListener("DOMContentLoaded", () => {
+  // Load card components dynamically
   document.querySelectorAll('[data-load-cards]').forEach(grid => {
     const cardsToLoad = grid.dataset.loadCards.split(',');
-    const gridElement = grid;
     
     cardsToLoad.forEach(cardName => {
       fetch(`components/${cardName}-card.html`)
-        .then(response => response.text())
-        .then(html => {
-          gridElement.insertAdjacentHTML('beforeend', html);
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${cardName}-card.html`);
+          }
+          return response.text();
         })
-        .catch(err => console.error('Card load failed:', cardName));
+        .then(html => {
+          grid.insertAdjacentHTML('beforeend', html);
+        })
+        .catch(err => {
+          console.error('Card load failed:', cardName, err);
+        });
     });
   });
-  
-  // Footer year (existing)
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
