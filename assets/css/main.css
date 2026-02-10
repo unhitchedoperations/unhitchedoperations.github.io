@@ -68,13 +68,12 @@ a {
 }
 
 .logo-mark {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;  /* square with slight round */
-  background: linear-gradient(135deg, var(--brand-accent), #e06a11);
-  box-shadow: 0 4px 12px rgba(204, 92, 0, 0.4);
+  width: 36px;      /* Slightly larger for favicon */
+  height: 36px;
+  border-radius: 6px;
+  object-fit: contain;  /* Keeps logo proportions perfect */
+  flex-shrink: 0;
 }
-
 
 .nav {
   font-size: 0.9rem;
