@@ -1,14 +1,273 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Unhitched Operations</title>
+    <title>Unhitched Operations – Gravel & Driveway Work</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Replace these colors/fonts to match your current site -->
+    <style>
+      :root {
+        --brand-bg: #111827;   /* dark background */
+        --brand-accent: #f59e0b; /* accent (buttons, highlights) */
+        --brand-text: #f9fafb;  /* light text */
+        --brand-muted: #9ca3af; /* muted text */
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #020617;
+        color: var(--brand-text);
+        line-height: 1.5;
+      }
+      a { color: inherit; text-decoration: none; }
+      .page {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 24px 16px 48px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 32px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .logo-mark {
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        background: var(--brand-accent);
+      }
+      .nav {
+        font-size: 0.9rem;
+        color: var(--brand-muted);
+        display: flex;
+        gap: 1.25rem;
+      }
+
+      .hero {
+        padding: 32px 0 24px;
+        border-bottom: 1px solid #1f2937;
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1.6fr);
+        gap: 32px;
+      }
+      @media (max-width: 768px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+      }
+      .hero-tag {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--brand-accent);
+        margin-bottom: 0.75rem;
+      }
+      .hero-title {
+        font-size: clamp(2rem, 4vw, 2.6rem);
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+      }
+      .hero-sub {
+        color: var(--brand-muted);
+        font-size: 0.98rem;
+        margin-bottom: 1.25rem;
+      }
+      .hero-list {
+        list-style: none;
+        color: var(--brand-muted);
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+      }
+      .hero-list li + li { margin-top: 0.25rem; }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.6rem 1.2rem;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+      }
+      .btn-primary {
+        background: var(--brand-accent);
+        color: #111827;
+      }
+      .btn-primary:hover {
+        filter: brightness(1.05);
+      }
+      .btn-ghost {
+        background: transparent;
+        border-color: #374151;
+        color: var(--brand-muted);
+      }
+      .btn-ghost:hover {
+        border-color: var(--brand-accent);
+        color: var(--brand-text);
+      }
+      .hero-meta {
+        font-size: 0.8rem;
+        color: var(--brand-muted);
+      }
+
+      .hero-card {
+        background: #020617;
+        border-radius: 0.75rem;
+        border: 1px solid #1f2937;
+        padding: 1.25rem 1.5rem;
+        box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+      }
+      .hero-card-title {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+      .hero-card-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+      }
+      .hero-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.15rem 0.65rem;
+        border-radius: 999px;
+        background: #111827;
+        font-size: 0.75rem;
+        color: var(--brand-muted);
+      }
+
+      .section {
+        padding: 32px 0 8px;
+        border-bottom: 1px solid #111827;
+      }
+      .section-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      .section-sub {
+        font-size: 0.92rem;
+        color: var(--brand-muted);
+        margin-bottom: 1rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+      @media (max-width: 768px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .card {
+        background: #020617;
+        border-radius: 0.75rem;
+        border: 1px solid #111827;
+        padding: 0.9rem 1rem;
+        font-size: 0.9rem;
+      }
+      .card h3 {
+        font-size: 0.95rem;
+        margin-bottom: 0.35rem;
+      }
+      .card p {
+        font-size: 0.85rem;
+        color: var(--brand-muted);
+      }
+
+      footer {
+        padding-top: 24px;
+        font-size: 0.8rem;
+        color: var(--brand-muted);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.75rem;
+      }
+      .footer-contact a { text-decoration: underline; text-decoration-thickness: 1px; }
+    </style>
   </head>
   <body>
-    <h1>Unhitched Operations</h1>
-    <p>Gravel, base, and driveway repair in the Wichita / Colwich area.</p>
-    <p>Text or call: 555‑555‑5555</p>
-    <p>Email: you@yourdomain.com</p>
-    <p><a href="https://yourbooqablelink.com">Book a load / request an estimate</a></p>
-  </body>
-</html>
+    <div class="page">
+      <header>
+        <div class="logo">
+          <div class="logo-mark"></div>
+          <span>Unhitched Operations</span>
+        </div>
+        <nav class="nav">
+          <a href="#services">Services</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#area">Service Area</a>
+        </nav>
+      </header>
+
+      <main>
+        <!-- HERO -->
+        <section class="hero">
+          <div>
+            <p class="hero-tag">Gravel • Base • Driveways</p>
+            <h1 class="hero-title">Small‑load gravel delivery and driveway repair done right.</h1>
+            <p class="hero-sub">
+              Fast, clean material delivery with tailgate spreading and light raking so your driveway, parking pad,
+              or RV spot is ready to use the same day.
+            </p>
+            <ul class="hero-list">
+              <li>5.5‑ton loads sized for residential driveways</li>
+              <li>Tailgate spreading and best‑effort leveling included</li>
+              <li>Serving Colwich, Wichita, and nearby communities</li>
+            </ul>
+            <div class="hero-actions">
+              <!-- Replace with your real Booqable or booking link -->
+              <a href="https://YOUR-BOOKING-LINK" class="btn btn-primary">
+                Book a load
+              </a>
+              <!-- Replace with your real phone -->
+              <a href="tel:1-555-555-5555" class="btn btn-ghost">
+                Call or text for a quote
+              </a>
+            </div>
+            <p class="hero-meta">
+              No up‑front package commitment — pay per load so we can adjust as we go.
+            </p>
+          </div>
+
+          <aside class="hero-card">
+            <div class="hero-card-title">Typical driveway refresh</div>
+            <div class="hero-card-row">
+              <span>Standard load</span>
+              <span>≈ 5.5 tons</span>
+            </div>
+            <div class="hero-card-row">
+              <span>Includes</span>
+              <span>Delivery + tailgate spread + light raking</span>
+            </div>
+            <div class="hero-card-row">
+              <span>Starting around</span>
+              <span>$400–$450 / load</span>
+            </div>
+            <div style="margin-top:0.75rem; display:flex; flex-wrap:wrap; gap:0.4rem;">
+              <span class="hero-pill">Single‑owner local business</span>
+              <span class="hero-pill">Text upd
