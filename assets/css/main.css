@@ -235,10 +235,28 @@ a {
 
 /* Grid & cards */
 
+/* Fix for dynamically loaded cards */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+  min-height: 1px; /* Prevents collapse before JS loads */
+}
+
+.grid:empty {
+  min-height: 200px; /* Placeholder height while loading */
+}
+
+/* Force grid layout after content loads */
+.grid > * {
+  break-inside: avoid;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card {
