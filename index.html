@@ -71,18 +71,11 @@
         </section>
 
         <!-- SERVICES -->
-        <div class="grid">
-            {% include gravel-card.html %}
-            {% include spreading-card.html %}
-            {% include raking-card.html %}
-        </div>
+        <div class="grid services-grid" data-load-cards="gravel,spreading,raking"></div>
+
 
         <!-- PRICING -->
-        <div class="grid">
-            {% include pricing-perload-card.html %}
-            {% include pricing-incremental-card.html %}
-            {% include pricing-payment-card.html %}
-        </div>
+        <div class="grid pricing-grid" data-load-cards="perload,incremental,payment"></div>
 
         <!-- AREA -->
         <section id="area" class="section">
