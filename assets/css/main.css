@@ -68,11 +68,11 @@ a {
 }
 
 .logo-mark {
-  width: 36px;      /* Slightly larger for favicon */
-  height: 36px;
-  border-radius: 6px;
-  object-fit: contain;  /* Keeps logo proportions perfect */
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
   flex-shrink: 0;
+  image-rendering: -webkit-optimize-contrast; /* Sharpens JPG */
 }
 
 .nav {
