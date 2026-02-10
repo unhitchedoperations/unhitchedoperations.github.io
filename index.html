@@ -36,12 +36,12 @@
               <li>Serving Colwich, Wichita, and nearby communities</li>
             </ul>
             <div class="hero-actions">
-              <a href="https://YOUR-BOOKING-LINK" class="btn btn-primary">
+            <a href="https://YOUR-BOOKING-LINK" class="btn btn-primary">
                 Book a load
-              </a>
-              <a href="tel:1-555-555-5555" class="btn btn-ghost">
+            </a>
+            <a href="tel:316-688-2500" class="btn btn-ghost">
                 Call or text for a quote
-              </a>
+            </a>
             </div>
             <p class="hero-meta">
               No up‑front package commitment — pay per load so we can adjust as we go.
@@ -71,48 +71,18 @@
         </section>
 
         <!-- SERVICES -->
-        <section id="services" class="section">
-          <h2 class="section-title">What we do</h2>
-          <p class="section-sub">
-            Small‑scale material delivery and driveway work tuned for homeowners, small acreage, and light commercial sites.
-          </p>
-          <div class="grid">
-            <article class="card">
-              <h3>Gravel & base delivery</h3>
-              <p>5.5‑ton loads of base rock, hard rock, and hybrid blends for driveways, parking areas, and equipment pads.</p>
-            </article>
-            <article class="card">
-              <h3>Tailgate spreading</h3>
-              <p>Controlled spreading from the truck as we drive, to save you hours of wheelbarrow work.</p>
-            </article>
-            <article class="card">
-              <h3>Light raking & touch‑ups</h3>
-              <p>Manual raking to smooth high spots and feather edges for a more even driving surface.</p>
-            </article>
-          </div>
-        </section>
+        <div class="grid">
+            {% include gravel-card.html %}
+            {% include spreading-card.html %}
+            {% include raking-card.html %}
+        </div>
 
         <!-- PRICING -->
-        <section id="pricing" class="section">
-          <h2 class="section-title">How pricing works</h2>
-          <p class="section-sub">
-            Pricing is per load and depends on material, distance, and driveway conditions. Start with one load and add more only if needed.
-          </p>
-          <div class="grid">
-            <article class="card">
-              <h3>Per‑load pricing</h3>
-              <p>Each quote includes material, delivery, tailgate spreading, and light raking for that load.</p>
-            </article>
-            <article class="card">
-              <h3>Incremental approach</h3>
-              <p>We adjust load‑by‑load so you don’t over‑order material.</p>
-            </article>
-            <article class="card">
-              <h3>Easy payment</h3>
-              <p>Pay per trip by card or cash. We can reuse a single payment method for follow‑up loads with your approval.</p>
-            </article>
-          </div>
-        </section>
+        <div class="grid">
+            {% include pricing-perload-card.html %}
+            {% include pricing-incremental-card.html %}
+            {% include pricing-payment-card.html %}
+        </div>
 
         <!-- AREA -->
         <section id="area" class="section">
@@ -123,18 +93,19 @@
         </section>
       </main>
 
-      <footer class="site-footer">
-        <div class="footer-contact">
-          <div>Unhitched Operations • Colwich, Kansas</div>
-          <div>
-            Call/text: <a href="tel:1-555-555-5555">1‑555‑555‑5555</a> •
-            Email: <a href="mailto:you@yourdomain.com">you@yourdomain.com</a>
-          </div>
+    <footer class="site-footer">
+    <div class="footer-contact">
+        <div>Unhitched Operations • Wichita, Kansas</div>
+        <div>
+        Call/text: <a href="tel:316-688-2500">316-688-2500</a> •
+        Email: <a href="mailto:unhitchedoperations@gmail.com">unhitchedoperations@gmail.com</a>
         </div>
-        <div class="footer-meta">
-          © <span id="year"></span> Unhitched Operations
-        </div>
-      </footer>
+    </div>
+    <div class="footer-meta">
+        © <span id="year"></span> Unhitched Operations
+    </div>
+    </footer>
+
     </div>
 
     <script src="assets/js/main.js"></script>
