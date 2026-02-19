@@ -128,6 +128,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const calcNote = document.getElementById('calc-note');
         const productImageContainer = document.getElementById('product-image-container');
         const productImagesGrid = document.getElementById('product-images-grid');
+        const productDescriptionContainer = document.getElementById('product-description-container');
+        const productDescription = document.getElementById('product-description');
         
         if (!serviceTypeSelect || !productSelect || !tonnageSelect || !priceResult) return;
         
@@ -141,10 +143,17 @@ document.addEventListener("DOMContentLoaded", () => {
             productImagesGrid.removeChild(productImagesGrid.firstChild);
           }
           productImagesGrid.innerHTML = '';
+          productDescriptionContainer.style.display = 'none';
           
           if (productKey && pricingData.products[productKey]) {
             const product = pricingData.products[productKey];
             const prices = product.prices;
+            
+            // Display product description
+            if (product.description) {
+              productDescription.innerHTML = product.description;
+              productDescriptionContainer.style.display = 'block';
+            }
             
             // Display product images directly from product.images array
             if (product.images && product.images.length > 0) {
@@ -177,12 +186,13 @@ document.addEventListener("DOMContentLoaded", () => {
           const serviceType = serviceTypeSelect.value;
           const serviceInfo = pricingData.serviceTypes[serviceType];
           
-          // Aggressively clear images when switching service types
+          // Aggressively clear images and description when switching service types
           while (productImagesGrid.firstChild) {
             productImagesGrid.removeChild(productImagesGrid.firstChild);
           }
           productImagesGrid.innerHTML = '';
           productImageContainer.style.display = 'none';
+          productDescriptionContainer.style.display = 'none';
           
           if (serviceType === 'aggregate') {
             // Show aggregate fields, hide dumpster

@@ -18,6 +18,7 @@
       "name": "Sand, Fill Dirt, Pea Gravel",
       "type": "aggregate",
       "images": ["fill-sand.jpg", "mason-sand.jpg", "fill-dirt.jpg", "pea-sand.jpg"],
+      "description": "<strong>Fill Sand:</strong> Great for general fill, leveling low spots, and base layers. Inexpensive option for large fill projects.\n<strong>Fill Dirt:</strong> Perfect for filling holes, low areas, or general landscaping projects. Contains natural topsoil content.\n<strong>Pea Gravel:</strong> Decorative and comfortable for walking areas. Good for landscaping, pathways, and decorative applications.",
       "prices": {
         "1": 240,
         "2": 250,
@@ -31,6 +32,7 @@
       "name": "Shredded and Unshredded Topsoil",
       "type": "aggregate",
       "images": ["shredded-topsoil.jpg", "unshredded-topsoil.jpg"],
+      "description": "<strong>Shredded Topsoil:</strong> Ready-to-use for lawns, gardens, and landscaping. Fine, uniform texture for easy spreading and seeding.\n<strong>Unshredded Topsoil:</strong> More economical option with natural chunks. Great for bulk fill under lawns or in landscape beds.\n<strong>Both types</strong> are nutrient-rich and perfect for establishing new grass or garden areas.",
       "prices": {
         "1": 260,
         "2": 290,
@@ -41,9 +43,10 @@
       }
     },
     "hard-rock-gravel": {
-      "name": "Hard Rock Gravel (3/4, 1, Base) & 3/8 Chip Drainage Rock",
+      "name": "Hard Rock (3/4\" - 1\") & 3/8\" Chip Gravel",
       "type": "aggregate",
-      "images": [],
+      "images": ["3-4-gravel.jpg", "3-8-chip-gravel.jpg"],
+      "description": "<strong>3/4\" to 1\" Hard Rock:</strong> Ideal for driveway and parking lot surfaces. Compacts well for a solid, stable driving surface. Excellent durability.\n<strong>3/8\" Chip Gravel:</strong> Great drainage material and decorative option. Works well as a top layer or for landscaping projects. Better for areas needing drainage.\n<strong>Both materials</strong> compact and lock together for superior road stability.",
       "prices": {
         "1": 270,
         "2": 310,
@@ -53,23 +56,11 @@
         "5.5": 450
       }
     },
-    "kge-base": {
-      "name": "KGE Base",
-      "type": "aggregate",
-      "images": [],
-      "prices": {
-        "1": 260,
-        "2": 290,
-        "3": 320,
-        "4": 350,
-        "5": 380,
-        "5.5": 400
-      }
-    },
     "limestone": {
-      "name": "Limestone 1 1/2 - 1 1/4",
+      "name": "Limestone (1 1/2\" - 1 1/4\") Gravel",
       "type": "aggregate",
-      "images": [],
+      "images": ["limestone-1.25-gravel.jpg", "limestone-1.5-gravel.jpg"],
+      "description": "<strong>1 1/2\" Limestone:</strong> Excellent for driveway bases and heavy-traffic areas. Compacts firmly and provides superior stability.\n<strong>1 1/4\" Limestone:</strong> Slightly smaller size for more uniform appearance. Great for both base layers and top-layer finishing.\n<strong>Limestone</strong> naturally binds together when compacted, creating a solid, long-lasting surface. Superior to plain rock for load-bearing applications.",
       "prices": {
         "1": 265,
         "2": 300,
@@ -77,6 +68,20 @@
         "4": 370,
         "5": 405,
         "5.5": 425
+      }
+    },
+    "kge-base": {
+      "name": "KGE & AB3 Base",
+      "type": "aggregate",
+      "images": ["kge-1.25-base.jpg", "kge-ab3-base.jpg"],
+      "description": "<strong>KGE Base (Crusher Rock - 1 1/4\"):</strong> Ideal for driveways, parking areas, camper pads, and filling potholes. Typically used as a base layer only.\n<strong>AB-3 Base (1 1/2\"):</strong> Consider surfacing with 3/4\" Hard Rock if using for driveway or parking applications. Do not use AB-3 in areas that are already wet or muddy, as it can take time for the material to dry out and stabilize.",
+      "prices": {
+        "1": 260,
+        "2": 290,
+        "3": 320,
+        "4": 350,
+        "5": 380,
+        "5.5": 400
       }
     },
     "dumpster": {
