@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="top-banner">
-      💬 Text - <a href="sms:316-688-2500">316-688-2500</a> to get started.
+      💬 Text - <a href="sms:316-688-2500">316-688-2500</a> to get scheduled.
     </div>
     <div class="page">
       <header class="site-header">
@@ -17,7 +17,7 @@
         <span>Unhitched Operations</span>
         </div>
         <nav class="nav">
-            <a href="#" id="calculator-trigger" class="nav-btn">Product Pricing Calculator</a>
+            <a href="#" id="calculator-trigger" class="nav-btn">💰 Product Pricing Calculator</a>
         </nav>
       </header>
 
@@ -26,16 +26,10 @@
         <section class="hero">
           <div class="hero-main">
             <p class="hero-tag">Aggregate Delivery • Dumpster Rentals</p>
-            <h1 class="hero-title">Small‑load gravel delivery and driveway repair done right.</h1>
+            <h1 class="hero-title">Your trusted local neighbor with a trailer. Here to serve your needs.</h1>
             <p class="hero-sub">
-              Fast, clean material delivery with tailgate spreading and light raking so your driveway, parking pad,
-              or RV spot is ready to use the same day.
+              Whether you’re refreshing a driveway, leveling a yard, or cleaning up after a project, we make local hauling simple—with fast quotes, fair pricing, and dependable service you can trust.
             </p>
-            <ul class="hero-list">
-              <li>5.5‑ton loads sized for residential driveways</li>
-              <li>Tailgate spreading and best‑effort leveling included</li>
-              <li>Serving Colwich, Wichita, and nearby communities</li>
-            </ul>
             <div class="hero-actions">
             <a href="sms:316-688-2500?body=Hi%20Unhitched%20Operations%2C%20I%27d%20like%20to%20schedule%20a%20service%20and%20get%20pricing" class="cta-text-link"></a>
             </div>
@@ -49,12 +43,11 @@
             <div id="reviews-widget-container" style="margin-bottom: 1.5rem;"></div>
             <div class="hero-card-pills">
               <span class="hero-pill">Single‑owner local business</span>
-              <span class="hero-pill">Same-day service available</span>
+              <span class="hero-pill">Quick turnaround</span>
               <span class="hero-pill">30% cheaper dumpsters</span>
               <span class="hero-pill">No upfront commitment</span>
               <span class="hero-pill">Flexible scheduling</span>
-              <span class="hero-pill">Text updates on the way</span>
-              <span class="hero-pill">Fast quotes within 1 hour</span>
+              <span class="hero-pill">Fast virtual quotes</span>
             </div>
           </aside>
         </section>
@@ -62,13 +55,7 @@
         <!-- Services -->
         <section id="services" class="section">
           <h2 class="section-title">Our Services</h2>
-          <div class="grid" data-load-cards="gravel,spreading,raking"></div>
-        </section>
-
-        <!-- Pricing -->
-        <section class="section">
-          <h2 class="section-title">How We Price</h2>
-          <div class="grid" data-load-cards="perload,incremental,payment"></div>
+          <div class="grid" data-load-cards="delivery,dumpster"></div>
         </section>
 
         <!-- AREA -->
@@ -77,6 +64,7 @@
           <p class="section-sub">
             Based in Park City, KS, we serve Wichita, surrounding communities, and beyond. Flexible on distance — we charge $0.70/mile beyond a 15-mile radius. Have a project outside our typical range? <a href="tel:316-688-2500">Give us a call</a> and we'll work with you.
           </p>
+          <img src="assets/img/Service%20Area.jpg" alt="Service area map showing included area in green and $0.70/mile applicable area in outer boundary" style="width: 100%; max-width: 600px; margin: 2rem auto; display: block; border-radius: 8px;">
         </section>
       </main>
 
@@ -143,7 +131,7 @@
           <div class="calculator-grid bottom-row">
             <div class="calc-group result">
               <label>Estimated Price</label>
-              <div id="price-result">$0.00</div>
+              <div id="price-result">💰 $0.00</div>
             </div>
           </div>
           
@@ -153,6 +141,14 @@
           
           <button class="btn btn-secondary" id="modal-close-btn" style="width: 100%; margin-top: 1.5rem;">Close</button>
         </section>
+      </div>
+    </div>
+
+    <!-- Rental Agreement Modal -->
+    <div id="agreement-modal" class="modal" style="display: none;">
+      <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
+        <button class="modal-close" id="agreement-modal-close">&times;</button>
+        <iframe src="rental-agreement.html" style="width: 100%; height: 100vh; border: none; border-radius: 8px;"></iframe>
       </div>
     </div>
 

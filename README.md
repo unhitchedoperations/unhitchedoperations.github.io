@@ -25,3 +25,7 @@ To change text, click index.html → the pencil icon → edit → “Commit chan
 The site auto‑rebuilds; refresh after ~30–60 seconds.
 
 If you tell me your business name, tagline, and preferred call‑to‑action (call, text, or “Book now”), I can draft a ready‑to‑paste index.html tailored for you.
+
+
+### Local testing
+http://localhost:8000/

@@ -44,6 +44,38 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Rental Agreement Modal functionality
+  const agreementModal = document.getElementById("agreement-modal");
+  const agreementCloseBtn = document.getElementById("agreement-modal-close");
+
+  if (agreementCloseBtn) {
+    agreementCloseBtn.addEventListener("click", () => {
+      agreementModal.style.display = "none";
+      document.body.style.overflow = "";
+    });
+  }
+
+  // Handle rental agreement modal overlay click
+  if (agreementModal) {
+    agreementModal.addEventListener("click", (e) => {
+      if (e.target === agreementModal) {
+        agreementModal.style.display = "none";
+        document.body.style.overflow = "";
+      }
+    });
+  }
+
+  // Handle rental agreement links
+  document.addEventListener("click", (e) => {
+    if (e.target.textContent.includes("View Agreement") || e.target.closest('[onclick*="openAgreement"]')) {
+      e.preventDefault();
+      if (agreementModal) {
+        agreementModal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+    }
+  });
+
   // Load card components dynamically (with grid refresh fix)
   document.querySelectorAll('[data-load-cards]').forEach(grid => {
     const cardsToLoad = grid.dataset.loadCards.split(',');
