@@ -2,21 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Unhitched Operations – Gravel & Driveway Work</title>
+    <title>Unhitched Operations | Aggregate Delivery & Dumpster Rentals</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="assets/css/main.css" rel="stylesheet">
   </head>
   <body>
+    <div class="top-banner">
+      💬 Text - <a href="sms:316-688-2500">316-688-2500</a> to get started.
+    </div>
     <div class="page">
       <header class="site-header">
         <div class="logo">
-        <img src="assets/img/website-favicon-transparent.jpg" alt="Unhitched Operations" class="logo-mark">
+        <img src="assets/img/website-favicon-transparent.png" alt="Unhitched Operations" class="logo-mark">
         <span>Unhitched Operations</span>
         </div>
         <nav class="nav">
-            <a href="#services">Services</a>
-            <a href="#" id="calculator-trigger">Pricing Calculator</a>
-            <a href="#area">Service Area</a>
+            <a href="#" id="calculator-trigger" class="nav-btn">Product Pricing Calculator</a>
         </nav>
       </header>
 
@@ -24,7 +25,7 @@
         <!-- HERO -->
         <section class="hero">
           <div class="hero-main">
-            <p class="hero-tag">Gravel • Base • Driveways</p>
+            <p class="hero-tag">Aggregate Delivery • Dumpster Rentals</p>
             <h1 class="hero-title">Small‑load gravel delivery and driveway repair done right.</h1>
             <p class="hero-sub">
               Fast, clean material delivery with tailgate spreading and light raking so your driveway, parking pad,
@@ -36,55 +37,45 @@
               <li>Serving Colwich, Wichita, and nearby communities</li>
             </ul>
             <div class="hero-actions">
-            <a href="https://YOUR-BOOKING-LINK" class="btn btn-primary">
-                Book a load
-            </a>
-            <a href="tel:316-688-2500" class="btn btn-ghost">
-                Call or text for a quote
-            </a>
+            <a href="sms:316-688-2500?body=Hi%20Unhitched%20Operations%2C%20I%27d%20like%20to%20schedule%20a%20service%20and%20get%20pricing" class="cta-text-link"></a>
             </div>
-            <p class="hero-meta">
-              No up‑front package commitment — pay per load so we can adjust as we go.
-            </p>
+            <!-- <p class="hero-meta">
+              Text to schedule & arrange payment
+            </p> -->
           </div>
 
           <aside class="hero-card">
-            <div class="hero-card-title">Typical driveway refresh</div>
-            <div class="hero-card-row">
-              <span>Standard load</span>
-              <span>≈ 5.5 tons</span>
-            </div>
-            <div class="hero-card-row">
-              <span>Includes</span>
-              <span>Delivery + tailgate spread + light raking</span>
-            </div>
-            <div class="hero-card-row">
-              <span>Starting around</span>
-              <span>$400–$450 / load</span>
-            </div>
+            <div class="hero-card-title">Why choose us</div>
+            <div id="reviews-widget-container" style="margin-bottom: 1.5rem;"></div>
             <div class="hero-card-pills">
               <span class="hero-pill">Single‑owner local business</span>
+              <span class="hero-pill">Same-day service available</span>
+              <span class="hero-pill">30% cheaper dumpsters</span>
+              <span class="hero-pill">No upfront commitment</span>
+              <span class="hero-pill">Flexible scheduling</span>
               <span class="hero-pill">Text updates on the way</span>
-              <span class="hero-pill">Photos after each load</span>
+              <span class="hero-pill">Fast quotes within 1 hour</span>
             </div>
           </aside>
         </section>
 
         <!-- Services -->
-        <div class="grid" data-load-cards="gravel,spreading,raking"></div>
-
-        <!-- Pricing Calculator -->
-        <div class="grid" data-load-cards="pricing-calculator"></div>
-        <div class="grid" data-load-cards="perload,incremental,payment"></div>
+        <section id="services" class="section">
+          <h2 class="section-title">Our Services</h2>
+          <div class="grid" data-load-cards="gravel,spreading,raking"></div>
+        </section>
 
         <!-- Pricing -->
-        <div class="grid" data-load-cards="perload,incremental,payment"></div>
+        <section class="section">
+          <h2 class="section-title">How We Price</h2>
+          <div class="grid" data-load-cards="perload,incremental,payment"></div>
+        </section>
 
         <!-- AREA -->
         <section id="area" class="section">
           <h2 class="section-title">Service area</h2>
           <p class="section-sub">
-            Based in Colwich, KS and serving northwest Wichita and surrounding areas. Reach out if you’re nearby and not sure — we’ll tell you quickly if it’s a fit.
+            Based in Park City, KS, we serve Wichita, surrounding communities, and beyond. Flexible on distance — we charge $0.70/mile beyond a 15-mile radius. Have a project outside our typical range? <a href="tel:316-688-2500">Give us a call</a> and we'll work with you.
           </p>
         </section>
       </main>
@@ -113,7 +104,16 @@
           <h2 class="section-title" style="display: block; margin-bottom: 1.5rem;">Pricing Calculator</h2>
           <div class="calculator-grid">
             <div class="calc-group">
-              <label>Tonnage</label>
+              <label>Service Type</label>
+              <select id="service-type">
+                <option value="gravel">Gravel Delivery</option>
+                <option value="dumpster">Dumpster Rental</option>
+              </select>
+            </div>
+          </div>
+          <div id="gravel-fields" class="calculator-grid">
+            <div class="calc-group">
+              <label id="quantity-label">Tonnage</label>
               <select id="tonnage">
                 <option value="">Select tonnage</option>
                 <option value="3.5">3.5 tons</option>
@@ -128,15 +128,30 @@
                 <option value="">Select product</option>
               </select>
             </div>
-            
+          </div>
+          <div id="dumpster-fields" class="calculator-grid" style="display: none;">
+            <div class="calc-group">
+              <label>Rental Duration</label>
+              <select id="duration">
+                <option value="">Select duration</option>
+                <option value="1-day">1-day rental</option>
+                <option value="3-day">3-day rental</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="calculator-grid bottom-row">
             <div class="calc-group result">
               <label>Estimated Price</label>
               <div id="price-result">$0.00</div>
             </div>
           </div>
-          <p class="calc-note" style="margin-top: 1.5rem;">
+          
+          <p class="calc-note" style="margin-top: 1.5rem;" id="calc-note">
             <strong>Includes:</strong> Material • Delivery • Tailgate spreading • Light raking
           </p>
+          
+          <button class="btn btn-secondary" id="modal-close-btn" style="width: 100%; margin-top: 1.5rem;">Close</button>
         </section>
       </div>
     </div>

@@ -1,7 +1,22 @@
 {
+  "mileageConfig": {
+    "freeRadiusMiles": 15,
+    "ratePerMile": 0.70
+  },
+  "serviceTypes": {
+    "gravel": {
+      "label": "Gravel Delivery",
+      "quantityLabel": "Tonnage"
+    },
+    "dumpster": {
+      "label": "Dumpster Rental",
+      "quantityLabel": "Rental Duration"
+    }
+  },
   "products": {
     "base": {
       "name": "Base Rock",
+      "type": "gravel",
       "prices": {
         "3.5": 320,
         "5.5": 420,
@@ -10,6 +25,7 @@
     },
     "top-gravel": {
       "name": "Top Gravel (1\")",
+      "type": "gravel",
       "prices": {
         "3.5": 340,
         "5.5": 450,
@@ -18,10 +34,19 @@
     },
     "hybrid": {
       "name": "Hybrid Base/Surface",
+      "type": "gravel",
       "prices": {
         "3.5": 330,
         "5.5": 435,
         "7": 540
+      }
+    },
+    "dumpster": {
+      "name": "18-Yard Dumpster (14' L x 7' W x 5' H)",
+      "type": "dumpster",
+      "prices": {
+        "1-day": 280,
+        "3-day": 325
       }
     }
   }
