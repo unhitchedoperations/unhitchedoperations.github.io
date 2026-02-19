@@ -15,7 +15,7 @@
         </div>
         <nav class="nav">
             <a href="#services">Services</a>
-            <a href="calculator.html">Pricing Calculator</a>
+            <a href="#" id="calculator-trigger">Pricing Calculator</a>
             <a href="#area">Service Area</a>
         </nav>
       </header>
@@ -102,6 +102,43 @@
     </div>
     </footer>
 
+    </div>
+
+    <!-- Modal -->
+    <div id="calculator-modal" class="modal">
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <button class="modal-close" id="modal-close">&times;</button>
+        <section class="pricing-calculator" style="margin: 0;">
+          <h2 class="section-title" style="display: block; margin-bottom: 1.5rem;">Pricing Calculator</h2>
+          <div class="calculator-grid">
+            <div class="calc-group">
+              <label>Tonnage</label>
+              <select id="tonnage">
+                <option value="">Select tonnage</option>
+                <option value="3.5">3.5 tons</option>
+                <option value="5.5">5.5 tons (most popular)</option>
+                <option value="7">7 tons</option>
+              </select>
+            </div>
+            
+            <div class="calc-group">
+              <label>Product</label>
+              <select id="product">
+                <option value="">Select product</option>
+              </select>
+            </div>
+            
+            <div class="calc-group result">
+              <label>Estimated Price</label>
+              <div id="price-result">$0.00</div>
+            </div>
+          </div>
+          <p class="calc-note" style="margin-top: 1.5rem;">
+            <strong>Includes:</strong> Material • Delivery • Tailgate spreading • Light raking
+          </p>
+        </section>
+      </div>
     </div>
 
     <script src="assets/js/main.js"></script>

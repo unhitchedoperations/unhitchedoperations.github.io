@@ -5,6 +5,40 @@ document.addEventListener("DOMContentLoaded", () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
+  // Modal functionality
+  const modal = document.getElementById("calculator-modal");
+  const trigger = document.getElementById("calculator-trigger");
+  const closeBtn = document.getElementById("modal-close");
+  const overlay = document.querySelector(".modal-overlay");
+
+  if (trigger) {
+    trigger.addEventListener("click", (e) => {
+      e.preventDefault();
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
+  }
+
+  function closeModal() {
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeModal);
+  }
+
+  if (overlay) {
+    overlay.addEventListener("click", closeModal);
+  }
+
+  // Close modal on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("active")) {
+      closeModal();
+    }
+  });
+
   // Load card components dynamically (with grid refresh fix)
   document.querySelectorAll('[data-load-cards]').forEach(grid => {
     const cardsToLoad = grid.dataset.loadCards.split(',');
