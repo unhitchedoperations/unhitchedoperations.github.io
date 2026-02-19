@@ -17,6 +17,7 @@
     "sand-dirt": {
       "name": "Sand, Fill Dirt, Pea Gravel",
       "type": "aggregate",
+      "images": ["fill-sand.jpg", "mason-sand.jpg", "fill-dirt.jpg", "pea-sand.jpg"],
       "prices": {
         "1": 240,
         "2": 250,
@@ -29,6 +30,7 @@
     "topsoil": {
       "name": "Shredded and Unshredded Topsoil",
       "type": "aggregate",
+      "images": ["shredded-topsoil.jpg", "unshredded-topsoil.jpg"],
       "prices": {
         "1": 260,
         "2": 290,
@@ -41,6 +43,7 @@
     "hard-rock-gravel": {
       "name": "Hard Rock Gravel (3/4, 1, Base) & 3/8 Chip Drainage Rock",
       "type": "aggregate",
+      "images": [],
       "prices": {
         "1": 270,
         "2": 310,
@@ -53,6 +56,7 @@
     "kge-base": {
       "name": "KGE Base",
       "type": "aggregate",
+      "images": [],
       "prices": {
         "1": 260,
         "2": 290,
@@ -65,6 +69,7 @@
     "limestone": {
       "name": "Limestone 1 1/2 - 1 1/4",
       "type": "aggregate",
+      "images": [],
       "prices": {
         "1": 265,
         "2": 300,
@@ -82,35 +87,5 @@
         "3-day": 325
       }
     }
-  },
-  "productImages": [
-    {
-      "filename": "fill-sand.jpg",
-      "keywords": ["sand"]
-    },
-    {
-      "filename": "mason-sand.jpg",
-      "keywords": ["sand"]
-    },
-    {
-      "filename": "fill-dirt.jpg",
-      "keywords": ["dirt"]
-    },
-    {
-      "filename": "pea-sand.jpg",
-      "keywords": ["sand"]
-    },
-    {
-      "filename": "concrete-sand.jpg",
-      "keywords": ["sand"]
-    },
-    {
-      "filename": "shredded-topsoil.jpg",
-      "keywords": ["topsoil"]
-    },
-        {
-      "filename": "unshredded-topsoil.jpg",
-      "keywords": ["topsoil"]
-    }
-  ]
+  }
 }

@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const productKey = productSelect.value;
           tonnageSelect.innerHTML = `<option value="">Select tonnage</option>`;
           
-          // Aggressively clear all images
+          // Clear all images
           while (productImagesGrid.firstChild) {
             productImagesGrid.removeChild(productImagesGrid.firstChild);
           }
@@ -146,41 +146,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const product = pricingData.products[productKey];
             const prices = product.prices;
             
-            // Extract keywords from product name (split and lowercase)
-            const productNameKeywords = product.name
-              .toLowerCase()
-              .split(/[\s,&()]+/)
-              .filter(word => word.length > 2); // Only words with 3+ chars
-            
-            // Find matching images
-            const matchingImages = pricingData.productImages.filter(img => {
-              return productNameKeywords.some(keyword => 
-                img.keywords.some(imgKeyword => 
-                  imgKeyword.includes(keyword) || keyword.includes(imgKeyword)
-                )
-              );
-            });
-            
-            // Display matching images
-            if (matchingImages.length > 0) {
-              productImagesGrid.innerHTML = '';
-              while (productImagesGrid.firstChild) {
-                productImagesGrid.removeChild(productImagesGrid.firstChild);
-              }
-              
-              matchingImages.forEach(img => {
+            // Display product images directly from product.images array
+            if (product.images && product.images.length > 0) {
+              product.images.forEach(filename => {
                 const imgElement = document.createElement('img');
-                imgElement.src = `assets/img/products/${img.filename}`;
-                imgElement.alt = `${product.name} - ${img.filename}`;
+                imgElement.src = `assets/img/products/${filename}`;
+                imgElement.alt = `${product.name} - ${filename}`;
                 imgElement.style.cssText = 'width: 100%; height: auto; border-radius: 8px; object-fit: cover; aspect-ratio: 1;';
                 productImagesGrid.appendChild(imgElement);
               });
               productImageContainer.style.display = 'block';
             } else {
-              productImagesGrid.innerHTML = '';
-              while (productImagesGrid.firstChild) {
-                productImagesGrid.removeChild(productImagesGrid.firstChild);
-              }
               productImageContainer.style.display = 'none';
             }
             
