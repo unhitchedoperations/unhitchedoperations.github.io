@@ -215,6 +215,19 @@ document.addEventListener("DOMContentLoaded", () => {
             gravelFields.style.display = 'none';
             dumpsterFields.style.display = 'grid';
             
+            // Display dumpster product images
+            const dumpsterProduct = pricingData.products['dumpster'];
+            if (dumpsterProduct && dumpsterProduct.images && dumpsterProduct.images.length > 0) {
+              dumpsterProduct.images.forEach(filename => {
+                const imgElement = document.createElement('img');
+                imgElement.src = `assets/img/products/${filename}`;
+                imgElement.alt = `${dumpsterProduct.name} - ${filename}`;
+                imgElement.style.cssText = 'width: 100%; height: auto; border-radius: 8px; object-fit: cover; aspect-ratio: 1;';
+                productImagesGrid.appendChild(imgElement);
+              });
+              productImageContainer.style.display = 'block';
+            }
+            
             calcNote.innerHTML = '<strong>Includes:</strong> 18-yard dumpster (14\' L x 7\' W x 5\' H) • 1 ton included • Drop-off & pick-up • Flexible scheduling';
           }
           

@@ -87,6 +87,7 @@
     "dumpster": {
       "name": "18-Yard Dumpster (14' L x 7' W x 5' H)",
       "type": "dumpster",
+      "images": ["dumpster-tree.jpg", "dumpster-sticks.jpg", "dumpster-junk.jpeg", "dumpster-junk2.jpg"],
       "prices": {
         "1-day": 280,
         "3-day": 325
