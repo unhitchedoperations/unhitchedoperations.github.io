@@ -126,24 +126,98 @@ document.addEventListener("DOMContentLoaded", () => {
         const durationSelect = document.getElementById('duration');
         const priceResult = document.getElementById('price-result');
         const calcNote = document.getElementById('calc-note');
+        const productImageContainer = document.getElementById('product-image-container');
+        const productImagesGrid = document.getElementById('product-images-grid');
         
         if (!serviceTypeSelect || !productSelect || !tonnageSelect || !priceResult) return;
+        
+        // Function to update tonnage options based on selected product
+        function updateTonnageOptions() {
+          const productKey = productSelect.value;
+          tonnageSelect.innerHTML = `<option value="">Select tonnage</option>`;
+          
+          // Aggressively clear all images
+          while (productImagesGrid.firstChild) {
+            productImagesGrid.removeChild(productImagesGrid.firstChild);
+          }
+          productImagesGrid.innerHTML = '';
+          
+          if (productKey && pricingData.products[productKey]) {
+            const product = pricingData.products[productKey];
+            const prices = product.prices;
+            
+            // Extract keywords from product name (split and lowercase)
+            const productNameKeywords = product.name
+              .toLowerCase()
+              .split(/[\s,&()]+/)
+              .filter(word => word.length > 2); // Only words with 3+ chars
+            
+            // Find matching images
+            const matchingImages = pricingData.productImages.filter(img => {
+              return productNameKeywords.some(keyword => 
+                img.keywords.some(imgKeyword => 
+                  imgKeyword.includes(keyword) || keyword.includes(imgKeyword)
+                )
+              );
+            });
+            
+            // Display matching images
+            if (matchingImages.length > 0) {
+              productImagesGrid.innerHTML = '';
+              while (productImagesGrid.firstChild) {
+                productImagesGrid.removeChild(productImagesGrid.firstChild);
+              }
+              
+              matchingImages.forEach(img => {
+                const imgElement = document.createElement('img');
+                imgElement.src = `assets/img/products/${img.filename}`;
+                imgElement.alt = `${product.name} - ${img.filename}`;
+                imgElement.style.cssText = 'width: 100%; height: auto; border-radius: 8px; object-fit: cover; aspect-ratio: 1;';
+                productImagesGrid.appendChild(imgElement);
+              });
+              productImageContainer.style.display = 'block';
+            } else {
+              productImagesGrid.innerHTML = '';
+              while (productImagesGrid.firstChild) {
+                productImagesGrid.removeChild(productImagesGrid.firstChild);
+              }
+              productImageContainer.style.display = 'none';
+            }
+            
+            // Sort tonnage values numerically
+            Object.keys(prices).sort((a, b) => parseFloat(a) - parseFloat(b)).forEach(tonnage => {
+              const displayText = tonnage === '5.5' ? `${tonnage} tons (most popular)` : `${tonnage} ton${tonnage !== '1' ? 's' : ''}`;
+              tonnageSelect.innerHTML += `<option value="${tonnage}">${displayText}</option>`;
+            });
+          } else {
+            productImageContainer.style.display = 'none';
+          }
+          
+          calculatePrice();
+        }
         
         // Function to update fields and products based on service type
         function updateFields() {
           const serviceType = serviceTypeSelect.value;
           const serviceInfo = pricingData.serviceTypes[serviceType];
           
-          if (serviceType === 'gravel') {
-            // Show gravel fields, hide dumpster
+          // Aggressively clear images when switching service types
+          while (productImagesGrid.firstChild) {
+            productImagesGrid.removeChild(productImagesGrid.firstChild);
+          }
+          productImagesGrid.innerHTML = '';
+          productImageContainer.style.display = 'none';
+          
+          if (serviceType === 'aggregate') {
+            // Show aggregate fields, hide dumpster
             gravelFields.style.display = 'grid';
             dumpsterFields.style.display = 'none';
             
-            // Update products dropdown for gravel only
+            // Update products dropdown for aggregate only
             productSelect.innerHTML = `<option value="">Select product</option>`;
             Object.keys(pricingData.products).forEach(key => {
               const product = pricingData.products[key];
-              if (product.type === 'gravel') {
+              if (product.type === 'aggregate') {
                 productSelect.innerHTML += `<option value="${key}">${product.name}</option>`;
               }
             });
@@ -151,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
             calcNote.innerHTML = '<strong>Includes:</strong> Material • Delivery • Tailgate spreading • Light raking';
             
           } else if (serviceType === 'dumpster') {
-            // Hide gravel fields, show dumpster
+            // Hide aggregate fields, show dumpster
             gravelFields.style.display = 'none';
             dumpsterFields.style.display = 'grid';
             
@@ -166,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const serviceType = serviceTypeSelect.value;
           let basePrice = 0;
           
-          if (serviceType === 'gravel') {
+          if (serviceType === 'aggregate') {
             const tonnage = tonnageSelect.value;
             const productKey = productSelect.value;
             
@@ -188,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Event listeners
         serviceTypeSelect.addEventListener('change', updateFields);
         tonnageSelect.addEventListener('change', calculatePrice);
-        productSelect.addEventListener('change', calculatePrice);
+        productSelect.addEventListener('change', updateTonnageOptions);
         durationSelect.addEventListener('change', calculatePrice);
         
         // Initial load

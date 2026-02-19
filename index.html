@@ -97,27 +97,28 @@
             <div class="calc-group">
               <label>Service Type</label>
               <select id="service-type">
-                <option value="gravel">Gravel Delivery</option>
+                <option value="aggregate">Aggregate Delivery</option>
                 <option value="dumpster">Dumpster Rental</option>
               </select>
             </div>
           </div>
           <div id="gravel-fields" class="calculator-grid">
             <div class="calc-group">
-              <label id="quantity-label">Tonnage</label>
-              <select id="tonnage">
-                <option value="">Select tonnage</option>
-                <option value="3.5">3.5 tons</option>
-                <option value="5.5">5.5 tons (most popular)</option>
-                <option value="7">7 tons</option>
+              <label id="quantity-label">Product</label>
+              <select id="product">
+                <option value="">Select product</option>
               </select>
             </div>
             
             <div class="calc-group">
-              <label>Product</label>
-              <select id="product">
-                <option value="">Select product</option>
+              <label>Tonnage</label>
+              <select id="tonnage">
+                <option value="">Select tonnage</option>
               </select>
+            </div>
+          </div>
+          <div id="product-image-container" style="display: none; margin: 1.5rem 0;">
+            <div id="product-images-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 700px; margin: 0 auto;">
             </div>
           </div>
           <div id="dumpster-fields" class="calculator-grid" style="display: none;">

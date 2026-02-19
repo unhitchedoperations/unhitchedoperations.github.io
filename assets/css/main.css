@@ -613,6 +613,8 @@ a {
   color: var(--brand-text);
   font-size: 1rem;
   cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 select option {
@@ -850,7 +852,7 @@ select option {
   border: 1px solid var(--brand-border-strong);
   border-radius: 12px;
   padding: 2rem;
-  max-width: 600px;
+  max-width: 750px;
   width: 100%;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
   max-height: 90vh;
