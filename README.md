@@ -29,3 +29,19 @@ If you tell me your business name, tagline, and preferred call‑to‑action (ca
 
 ### Local testing
 http://localhost:8000/
+
+## GitHub Pages build and obfuscation
+
+This repo includes a GitHub Actions workflow at `.github/workflows/pages-build-deploy.yml` that:
+- builds a deployable `dist/` folder,
+- minifies JS and CSS,
+- obfuscates JS for production,
+- deploys to GitHub Pages.
+
+### Disable obfuscation for debugging
+
+In `.github/workflows/pages-build-deploy.yml`, set:
+
+`OBFUSCATE_JS: "false"`
+
+This keeps minification enabled but skips JavaScript obfuscation.
