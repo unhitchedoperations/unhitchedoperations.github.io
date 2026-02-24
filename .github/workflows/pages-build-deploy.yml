@@ -1,4 +1,4 @@
-name: Build and Deploy Pages (No External Actions)
+name: Build and Deploy Website (No External Actions)
 
 env:
   # Set to "false" to keep minification but skip JS obfuscation (useful for debugging).
