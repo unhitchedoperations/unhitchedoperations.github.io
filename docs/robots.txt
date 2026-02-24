@@ -1,0 +1,7 @@
+# robots.txt is a request to compliant crawlers only.
+# It does not block malicious bots from accessing public files.
+
+User-agent: *
+Disallow: /data/
+Disallow: /components/
+Allow: /
