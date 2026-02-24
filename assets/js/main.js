@@ -10,7 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const trigger = document.getElementById("calculator-trigger");
   const closeBtn = document.getElementById("modal-close");
   const closeBtnText = document.getElementById("modal-close-btn");
-  const overlay = document.querySelector(".modal-overlay");
+  const overlay = modal ? modal.querySelector(".modal-overlay") : null;
+
+  // Service area image modal functionality
+  const serviceAreaModal = document.getElementById("service-area-modal");
+  const serviceAreaOpen = document.getElementById("service-area-open");
+  const serviceAreaClose = document.getElementById("service-area-close");
+  const serviceAreaOverlay = serviceAreaModal ? serviceAreaModal.querySelector(".modal-overlay") : null;
 
   if (trigger) {
     trigger.addEventListener("click", (e) => {
@@ -22,6 +28,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function closeModal() {
     modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  function openServiceAreaModal() {
+    if (!serviceAreaModal) return;
+    serviceAreaModal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeServiceAreaModal() {
+    if (!serviceAreaModal) return;
+    serviceAreaModal.classList.remove("active");
     document.body.style.overflow = "";
   }
 
@@ -37,10 +55,28 @@ document.addEventListener("DOMContentLoaded", () => {
     overlay.addEventListener("click", closeModal);
   }
 
+  if (serviceAreaOpen) {
+    serviceAreaOpen.addEventListener("click", (e) => {
+      e.preventDefault();
+      openServiceAreaModal();
+    });
+  }
+
+  if (serviceAreaClose) {
+    serviceAreaClose.addEventListener("click", closeServiceAreaModal);
+  }
+
+  if (serviceAreaOverlay) {
+    serviceAreaOverlay.addEventListener("click", closeServiceAreaModal);
+  }
+
   // Close modal on Escape key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && modal.classList.contains("active")) {
       closeModal();
+    }
+    if (e.key === "Escape" && serviceAreaModal && serviceAreaModal.classList.contains("active")) {
+      closeServiceAreaModal();
     }
   });
 
@@ -287,7 +323,7 @@ document.addEventListener("DOMContentLoaded", () => {
           Trusted by our customers
         </div>
         <div style="color: rgba(17, 24, 39, 0.9); font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.4;">
-          5.0 rating on Google <br>from real local customers
+          Real Reviews. <br>From Real Locals.
         </div>
         <a href="https://share.google/9Btdw8NdSloQwtBwG" target="_blank" style="display: inline-block; padding: 0.65rem 1.5rem; background: #111827; color: var(--brand-accent); border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); transition: all 0.2s ease; border: 2px solid #111827;" onmouseover="this.style.background='rgba(17, 24, 39, 0.9)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(0, 0, 0, 0.3)';" onmouseout="this.style.background='#111827'; this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 8px rgba(0, 0, 0, 0.2)';">
           Read reviews on Google →

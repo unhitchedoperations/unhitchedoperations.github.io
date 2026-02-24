@@ -88,6 +88,21 @@ jobs:
             npx --yes esbuild "$file" --minify --loader:.css=css --outfile="$file" --allow-overwrite
           done
 
+          # Minify HTML files in-place in docs/.
+          # Note: HTML is always visible to browsers, but minification reduces readability when inspected.
+          find docs -type f -name "*.html" -print0 | while IFS= read -r -d '' file; do
+            npx --yes html-minifier-terser \
+              --collapse-whitespace \
+              --remove-comments \
+              --remove-redundant-attributes \
+              --remove-script-type-attributes \
+              --remove-style-link-type-attributes \
+              --use-short-doctype \
+              --minify-css true \
+              --minify-js true \
+              -o "$file" "$file"
+          done
+
           # Auto-resize portfolio images and create thumbnails.
           # Behavior:
           # - Portfolio images are resized to max 1200px width (mobile-friendly).

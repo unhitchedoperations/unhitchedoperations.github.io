@@ -5,6 +5,7 @@ The official website for Unhitched Operations.
 
 This repo includes a GitHub Actions workflow at `.github/workflows/pages-build-deploy.yml` that:
 - builds a static site into the `docs/` folder,
+- minifies HTML,
 - minifies JS and CSS,
 - obfuscates JS for production,
 - commits and pushes the built `docs/` folder to `main`.

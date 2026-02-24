@@ -100,13 +100,13 @@
           </div>
         </a>
         <nav class="nav">
-            <div style="display: flex; flex-direction: row; align-items: flex-start; gap: 1rem;">
-              <a href="portfolio.html" class="nav-btn" style="margin-top: 0;">🖼️ Portfolio</a>
-              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.4rem;">
-                <a href="#" id="calculator-trigger" class="nav-btn" style="box-shadow: 0 0 12px rgba(204,92,0,0.2), 0 0 24px rgba(204,92,0,0.1);">Product Pricing & Gallery</a>
-                <span style="font-size: 0.75rem; color: var(--brand-text-muted); font-weight: 500; animation: wave-text 2s ease-in-out infinite;">Click to get your estimate <span style="display: inline-block; animation: finger-bounce 1s ease-in-out infinite;">☝️</span></span>
+            <div style="display: flex; flex-direction: row; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap; justify-content: center; width: 100%;">
+              <a href="portfolio.html" class="nav-btn" style="margin-top: 0; font-size: clamp(0.8rem, 2.5vw, 1rem); flex-shrink: 1; min-width: fit-content;">🖼️ Portfolio</a>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem; flex-shrink: 1; min-width: fit-content;">
+                <a href="#" id="calculator-trigger" class="nav-btn" style="box-shadow: 0 0 18px rgba(204,92,0,0.35), 0 0 34px rgba(204,92,0,0.22), 0 0 52px rgba(204,92,0,0.12); font-size: clamp(0.75rem, 2.5vw, 1rem); white-space: normal; min-width: fit-content;">🚛 Service Pricing Calculator</a>
+                <span style="font-size: clamp(0.6rem, 1.5vw, 0.75rem); color: var(--brand-text-muted); font-weight: 500; animation: wave-text 2s ease-in-out infinite;">Click to get your estimate <span style="display: inline-block; animation: finger-bounce 1s ease-in-out infinite;">☝️</span></span>
               </div>
-              <a href="https://www.facebook.com/profile.php?id=61569244888866" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: #1877F2; border-radius: 50%; color: white; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0;" title="Visit us on Facebook" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 4px 12px rgba(24, 119, 242, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+              <a href="https://www.facebook.com/profile.php?id=61569244888866" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; justify-content: center; width: clamp(38px, 9vw, 44px); height: clamp(38px, 9vw, 44px); background: #1877F2; border-radius: 50%; color: white; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0;" title="Visit us on Facebook" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 4px 12px rgba(24, 119, 242, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
                   <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047v-2.66c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.971h-1.513c-1.491 0-1.956.93-1.956 1.886v2.265h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
                 </svg>
@@ -115,48 +115,50 @@
         </nav>
       </header>
 
-      <main>
-        <!-- HERO -->
-        <section class="hero">
-          <div class="hero-main">
-            <p class="hero-tag">Aggregate Delivery • Dumpster Rentals</p>
-            <h1 class="hero-title">Your trusted local neighbor with a trailer. Here to serve your needs.</h1>
-            <p class="hero-sub">
-              Whether you’re refreshing a driveway, leveling a yard, or cleaning up after a project, we make local hauling simple—with fast quotes, fair pricing, and dependable service you can trust.
-            </p>
-            <div class="hero-actions">
-            <a href="sms:316-688-2500?body=Hi%20Unhitched%20Operations%2C%20I%27d%20like%20to%20schedule%20a%20service%20and%20get%20pricing" class="cta-text-link"></a>
+      <main class="home-main">
+        <div class="home-content">
+          <!-- HERO -->
+          <section class="hero">
+            <div class="hero-main">
+              <p class="hero-tag">Aggregate Delivery • Dumpster Rentals</p>
+              <h1 class="hero-title">Your trusted local neighbor with a trailer. Here to serve your needs.</h1>
+              <p class="hero-sub">
+                Whether you’re refreshing a driveway, leveling a yard, or cleaning up after a project, we make local hauling simple—with fast quotes, fair pricing, and dependable service you can trust.
+              </p>
+              <div class="hero-actions">
+              <a href="sms:316-688-2500?body=Hi%20Unhitched%20Operations%2C%20I%27d%20like%20to%20schedule%20a%20service%20and%20get%20pricing" class="cta-text-link"></a>
+              </div>
+              <!-- <p class="hero-meta">
+                Text to schedule & arrange payment
+              </p> -->
             </div>
-            <!-- <p class="hero-meta">
-              Text to schedule & arrange payment
-            </p> -->
+          </section>
+
+          <!-- Services -->
+          <section id="services" class="section">
+            <h2 class="section-title">Our Services</h2>
+            <div class="grid" data-load-cards="delivery,dumpster"></div>
+          </section>
+        </div>
+
+        <aside class="hero-card header-review-card">
+          <div class="hero-card-title">Why choose us</div>
+          <div id="reviews-widget-container" style="margin-bottom: 1.5rem;"></div>
+          <div class="hero-card-pills">
+            <span class="hero-pill">Single‑owner local business</span>
+            <span class="hero-pill">Flexible scheduling • No upfront commit • Fast quotes</span>
+            <span class="hero-pill">30% cheaper dumpster rentals</span>
           </div>
-
-          <aside class="hero-card">
-            <div class="hero-card-title">Why choose us</div>
-            <div id="reviews-widget-container" style="margin-bottom: 1.5rem;"></div>
-            <div class="hero-card-pills">
-              <span class="hero-pill">Single‑owner local business</span>
-              <span class="hero-pill">Flexible scheduling • No upfront commit • Fast quotes</span>
-              <span class="hero-pill">30% cheaper dumpster rentals</span>
-            </div>
-          </aside>
-        </section>
-
-        <!-- Services -->
-        <section id="services" class="section">
-          <h2 class="section-title">Our Services</h2>
-          <div class="grid" data-load-cards="delivery,dumpster"></div>
-        </section>
-
-        <!-- AREA -->
-        <section id="area" class="section">
-          <h2 class="section-title">Service area</h2>
-          <p class="section-sub">
-            Based in Park City, KS, we serve Wichita, surrounding communities, and beyond. Flexible on distance — we charge $0.70/mile beyond a 15-mile radius. Have a project outside our typical range? <a href="tel:316-688-2500">Give us a call</a> and we'll work with you.
-          </p>
-          <img src="assets/img/Service%20Area.jpg" alt="Service area map showing included area in green and $0.70/mile applicable area in outer boundary" style="width: 100%; max-width: 600px; margin: 2rem auto; display: block; border-radius: 8px;">
-        </section>
+          <a href="sms:316-688-2500?body=Hi%20Unhitched%20Operations%2C%20I%27d%20like%20a%20fast%20quote" class="btn btn-primary sidebar-cta-btn">💬 Text for Fast Quote</a>
+          <div class="sidebar-service-block">
+            <div class="sidebar-service-title">Service Radius</div>
+            <div class="sidebar-service-text">15-mile base area • Flexible out-of-radius ($0.70/mile)</div>
+            <a href="tel:316-688-2500" class="sidebar-service-link">Call for out-of-radius jobs</a>
+            <a href="assets/img/Service%20Area.jpg" class="sidebar-service-image-link" id="service-area-open" aria-label="Open service area image full size">
+              <img src="assets/img/Service%20Area.jpg" alt="Service area map showing included area in green and $0.70/mile applicable area in outer boundary" class="sidebar-service-image">
+            </a>
+          </div>
+        </aside>
       </main>
 
     <footer class="site-footer">
@@ -234,7 +236,7 @@
             <strong>Includes:</strong> Material • Delivery • Tailgate spreading • Light raking
           </p>
           
-          <button class="btn btn-secondary" id="modal-close-btn" style="width: 100%; margin-top: 1.5rem;">Close</button>
+          <button class="btn btn-secondary" id="modal-close-btn" style="width: 100%; margin-top: 1.5rem;">Close Calculator</button>
         </section>
       </div>
     </div>
@@ -244,6 +246,15 @@
       <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
         <button class="modal-close" id="agreement-modal-close">&times;</button>
         <iframe src="rental-agreement.html" style="width: 100%; height: 100vh; border: none; border-radius: 8px;"></iframe>
+      </div>
+    </div>
+
+    <!-- Service Area Image Modal -->
+    <div id="service-area-modal" class="modal service-area-modal">
+      <div class="modal-overlay"></div>
+      <div class="modal-content service-area-modal-content">
+        <button class="modal-close" id="service-area-close" aria-label="Close service area image">&times;</button>
+        <img src="assets/img/Service%20Area.jpg" alt="Service area map showing included area in green and $0.70/mile applicable area in outer boundary" class="service-area-modal-image">
       </div>
     </div>
 
