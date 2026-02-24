@@ -5,3 +5,5 @@ User-agent: *
 Disallow: /data/
 Disallow: /components/
 Allow: /
+
+Sitemap: https://www.unhitchedoperations.com/sitemap.xml
