@@ -240,6 +240,7 @@ a {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  white-space: nowrap;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -264,24 +265,25 @@ a {
 }
 
 .header-nav {
-  width: 100%;
+  width: auto;
+  margin-left: auto;
 }
 
 .header-nav-row {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-end;
   gap: 0.75rem;
-  width: 100%;
+  width: auto;
 }
 
 .header-primary-actions {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.75rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .calculator-cta-wrap {
@@ -437,8 +439,6 @@ a {
     border-radius: 12px;
   }
 }
-
-.hero-main { }
 
 .hero-tag {
   font-size: 0.8rem;
@@ -1176,15 +1176,22 @@ select option {
     gap: 0.75rem;
   }
 
+  .logo {
+    white-space: normal;
+  }
+
+  .header-nav {
+    width: 100%;
+    margin-left: 0;
+  }
+
   .header-nav-row {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.6rem;
+    width: 100%;
   }
 
   .header-primary-actions {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
     gap: 0.6rem;
     width: 100%;
     align-items: start;
@@ -1210,6 +1217,9 @@ select option {
 
   .facebook-link {
     align-self: center;
+    justify-self: end;
+    width: 38px;
+    height: 38px;
   }
 
   .hero {
