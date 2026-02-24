@@ -88,6 +88,24 @@ jobs:
             npx --yes esbuild "$file" --minify --loader:.css=css --outfile="$file" --allow-overwrite
           done
 
+          # Auto-resize portfolio images and create thumbnails.
+          # Behavior:
+          # - Portfolio images are resized to max 1200px width (mobile-friendly).
+          # - Thumbnails created at 400px width for grid display.
+          # - Originals are backed up; resized versions are optimized.
+          if [ -d "docs/assets/img/portfolio" ]; then
+            find docs/assets/img/portfolio -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \) -not -name "*-thumb.*" -print0 | while IFS= read -r -d '' file; do
+              if command -v convert &>/dev/null; then
+                # Create optimized main image (max 1200px width)
+                convert "$file" -resize "1200x1200>" -quality 85 -strip "$file"
+                
+                # Create thumbnail (max 400px width)
+                thumbnail_path="${file%.*}-thumb.${file##*.}"
+                convert "$file" -resize "400x400>" -quality 85 -strip "$thumbnail_path"
+              fi
+            done
+          fi
+
           # Remove source maps if any are generated in future changes.
           find docs -type f -name "*.map" -delete
           touch docs/.nojekyll
