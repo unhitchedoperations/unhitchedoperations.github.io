@@ -22,7 +22,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: "pages-branch"
+  group: "pages-deploy"
   cancel-in-progress: true
 
 jobs:
@@ -37,7 +37,7 @@ jobs:
       # - No paid tools are required by this workflow.
       # - Public repo: GitHub-hosted runner minutes are generally free.
       # - Private repo: uses your Actions minutes quota; paid only if quota is exceeded.
-      - name: Build site and deploy to gh-pages
+      - name: Build site and deploy to docs/ folder
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -61,15 +61,15 @@ jobs:
 
           git clone --depth 1 --branch "${GITHUB_REF_NAME}" "${REPO_URL}" src
 
-          mkdir -p dist
-          rsync -a --exclude '.git' --exclude '.github' src/ dist/
+          mkdir -p docs
+          rsync -a --exclude '.git' --exclude '.github' --exclude 'docs' src/ docs/
 
-          # Minify and obfuscate JavaScript files in-place in dist/.
+          # Minify and obfuscate JavaScript files in-place in docs/.
           # Behavior:
           # - Bundles each file individually
           # - Minifies output
           # - Applies lightweight obfuscation for casual deterrence
-          find dist -type f -name "*.js" -print0 | while IFS= read -r -d '' file; do
+          find docs -type f -name "*.js" -print0 | while IFS= read -r -d '' file; do
             npx --yes esbuild "$file" --minify --bundle --format=iife --outfile="$file"
 
             if [ "${OBFUSCATE_EFFECTIVE}" = "true" ]; then
@@ -83,43 +83,27 @@ jobs:
             fi
           done
 
-          # Minify CSS files in-place in dist/.
-          find dist -type f -name "*.css" -print0 | while IFS= read -r -d '' file; do
+          # Minify CSS files in-place in docs/.
+          find docs -type f -name "*.css" -print0 | while IFS= read -r -d '' file; do
             npx --yes esbuild "$file" --minify --loader:.css=css --outfile="$file"
           done
 
           # Remove source maps if any are generated in future changes.
-          find dist -type f -name "*.map" -delete
-          touch dist/.nojekyll
+          find docs -type f -name "*.map" -delete
+          touch docs/.nojekyll
 
-          if git ls-remote --exit-code --heads "${REPO_URL}" gh-pages >/dev/null 2>&1; then
-            git clone --depth 1 --branch gh-pages "${REPO_URL}" pages
-          else
-            mkdir -p pages
-            cd pages
-            git init
-            git checkout -b gh-pages
-            cd ..
-          fi
-
-          rsync -a --delete --exclude '.git' dist/ pages/
-
-          cd pages
+          cd src
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
+
+          rsync -a --delete --exclude '.git' ../docs/ ./docs/
+          git add docs/
 
           if git diff --cached --quiet; then
             echo "No changes to deploy."
             exit 0
           fi
 
-          git commit -m "Deploy from ${GITHUB_REF_NAME} (${GITHUB_SHA})"
+          git commit -m "Build: Rebuild docs/ ($(date -u +'%Y-%m-%d %H:%M:%S UTC'))"
 
-          if git remote | grep -q '^origin$'; then
-            git remote set-url origin "${REPO_URL}"
-          else
-            git remote add origin "${REPO_URL}"
-          fi
-
-          git push origin gh-pages
+          git push origin main

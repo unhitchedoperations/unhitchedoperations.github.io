@@ -33,12 +33,19 @@ http://localhost:8000/
 ## GitHub Pages build and obfuscation
 
 This repo includes a GitHub Actions workflow at `.github/workflows/pages-build-deploy.yml` that:
-- builds a deployable `dist/` folder,
+- builds a static site into the `docs/` folder,
 - minifies JS and CSS,
 - obfuscates JS for production,
-- deploys to the `gh-pages` branch used by GitHub Pages.
+- commits and pushes the built `docs/` folder to `main`.
 
 The workflow is shell-only (no external `uses:` actions), so it is compatible with strict org action policies.
+
+### Required Pages setting
+
+In GitHub repo settings, set Pages source to:
+- **Deploy from a branch**
+- Branch: `main`
+- Folder: `/docs`
 
 ### Manual run toggle (no file edit needed)
 
@@ -47,11 +54,3 @@ When running the workflow from the Actions tab (`workflow_dispatch`), choose:
 - `obfuscate_js = false` to minify only (debug-friendly)
 
 Automatic pushes to `main` always obfuscate JavaScript (production guardrail).
-
-### Disable obfuscation for debugging
-
-In `.github/workflows/pages-build-deploy.yml`, set:
-
-`OBFUSCATE_JS: "false"`
-
-This keeps minification enabled but skips JavaScript obfuscation.
