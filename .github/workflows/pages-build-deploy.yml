@@ -1,4 +1,4 @@
-name: Build and Deploy GitHub Pages
+name: Build and Deploy Pages (No External Actions)
 
 env:
   # Set to "false" to keep minification but skip JS obfuscation (useful for debugging).
@@ -8,42 +8,61 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+    inputs:
+      obfuscate_js:
+        description: "Manual override for JS obfuscation (default false for debugging)"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "true"
+          - "false"
 
-# Required permissions for deploying to GitHub Pages from Actions.
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
-# Avoid overlapping deployments for the same branch.
 concurrency:
-  group: "pages"
+  group: "pages-branch"
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      # No paid tools are required for this workflow.
+      # This workflow intentionally avoids all external `uses:` actions so it works
+      # when org policy allows only actions from repositories you own.
+      #
       # Cost model:
+      # - No paid tools are required by this workflow.
       # - Public repo: GitHub-hosted runner minutes are generally free.
       # - Private repo: uses your Actions minutes quota; paid only if quota is exceeded.
-      - name: Build static output into dist/
+      - name: Build site and deploy to gh-pages
         shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+          GITHUB_SHA: ${{ github.sha }}
+          INPUT_OBFUSCATE_JS: ${{ github.event.inputs.obfuscate_js }}
         run: |
           set -euo pipefail
 
+          # Guardrail:
+          # - Automatic production deploys (push on main): always obfuscate.
+          # - Manual runs (workflow_dispatch): default to non-obfuscated debug output.
+          if [ "${GITHUB_EVENT_NAME}" = "push" ] && [ "${GITHUB_REF_NAME}" = "main" ]; then
+            OBFUSCATE_EFFECTIVE="true"
+          else
+            OBFUSCATE_EFFECTIVE="${INPUT_OBFUSCATE_JS:-false}"
+          fi
+
+          REPO_URL="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+          git clone --depth 1 --branch "${GITHUB_REF_NAME}" "${REPO_URL}" src
+
           mkdir -p dist
-          rsync -a --exclude '.git' --exclude '.github' ./ dist/
+          rsync -a --exclude '.git' --exclude '.github' src/ dist/
 
           # Minify and obfuscate JavaScript files in-place in dist/.
           # Behavior:
@@ -53,7 +72,7 @@ jobs:
           find dist -type f -name "*.js" -print0 | while IFS= read -r -d '' file; do
             npx --yes esbuild "$file" --minify --bundle --format=iife --outfile="$file"
 
-            if [ "${OBFUSCATE_JS}" = "true" ]; then
+            if [ "${OBFUSCATE_EFFECTIVE}" = "true" ]; then
               npx --yes javascript-obfuscator "$file" \
                 --output "$file" \
                 --compact true \
@@ -71,23 +90,36 @@ jobs:
 
           # Remove source maps if any are generated in future changes.
           find dist -type f -name "*.map" -delete
+          touch dist/.nojekyll
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+          if git ls-remote --exit-code --heads "${REPO_URL}" gh-pages >/dev/null 2>&1; then
+            git clone --depth 1 --branch gh-pages "${REPO_URL}" pages
+          else
+            mkdir -p pages
+            cd pages
+            git init
+            git checkout -b gh-pages
+            cd ..
+          fi
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
+          rsync -a --delete --exclude '.git' dist/ pages/
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
+          cd pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
 
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          if git diff --cached --quiet; then
+            echo "No changes to deploy."
+            exit 0
+          fi
+
+          git commit -m "Deploy from ${GITHUB_REF_NAME} (${GITHUB_SHA})"
+
+          if git remote | grep -q '^origin$'; then
+            git remote set-url origin "${REPO_URL}"
+          else
+            git remote add origin "${REPO_URL}"
+          fi
+
+          git push origin gh-pages

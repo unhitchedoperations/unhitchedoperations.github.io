@@ -36,7 +36,17 @@ This repo includes a GitHub Actions workflow at `.github/workflows/pages-build-d
 - builds a deployable `dist/` folder,
 - minifies JS and CSS,
 - obfuscates JS for production,
-- deploys to GitHub Pages.
+- deploys to the `gh-pages` branch used by GitHub Pages.
+
+The workflow is shell-only (no external `uses:` actions), so it is compatible with strict org action policies.
+
+### Manual run toggle (no file edit needed)
+
+When running the workflow from the Actions tab (`workflow_dispatch`), choose:
+- `obfuscate_js = true` to minify + obfuscate JS
+- `obfuscate_js = false` to minify only (debug-friendly)
+
+Automatic pushes to `main` always obfuscate JavaScript (production guardrail).
 
 ### Disable obfuscation for debugging
 
