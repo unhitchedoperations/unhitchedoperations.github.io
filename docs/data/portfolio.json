@@ -1,0 +1,110 @@
+{
+  "portfolioItems": [
+    {
+      "category": "Dumpster Rentals",
+      "title": "Debris Hauling",
+      "image": "assets/img/portfolio/dumpster-junk.jpg",
+      "description": "Complete property cleanout with dumpster rental"
+    },
+    {
+      "category": "Dumpster Rentals",
+      "title": "Debris Hauling",
+      "image": "assets/img/portfolio/dumpster-junk2.jpg",
+      "description": "Fast and efficient debris removal"
+    },
+    {
+      "category": "Dumpster Rentals",
+      "title": "Tree Waste Removal",
+      "image": "assets/img/portfolio/dumpster-tree.jpg",
+      "description": "Branches and yard waste disposal"
+    },
+    {
+      "category": "Dumpster Rentals",
+      "title": "Light Brush & Limb Haul",
+      "image": "assets/img/portfolio/dumpster-sticks.jpg",
+      "description": "Light brush and limb removal service"
+    },
+        {
+      "category": "Dumpster Rentals",
+      "title": "Large Brush & Limb Haul",
+      "image": "assets/img/portfolio/dumpster-tree-dump.png",
+      "description": "Heavy brush and limb removal service"
+    },
+    {
+      "category": "Aggregate Delivery",
+      "title": "Topsoil 10 Tons",
+      "image": "assets/img/portfolio/aggregate-topsoil-10ton.jpg",
+      "description": "10 tons of topsoil delivered for landscaping project"
+    },
+    {
+      "category": "Aggregate Delivery",
+      "title": "Topsoil 5 Tons",
+      "image": "assets/img/portfolio/aggregate-topsoil-5ton.jpg",
+      "description": "5 tons of topsoil delivered for landscaping project"
+    },
+    {
+      "category": "Aggregate Delivery",
+      "title": "Topsoil 5 Tons",
+      "image": "assets/img/portfolio/aggregate-topsoil-5ton2.jpg",
+      "description": "5 tons of topsoil delivered for landscaping project"
+    },
+    {
+      "category": "Aggregate Delivery",
+      "title": "Mason Sand 6 Tons",
+      "image": "assets/img/portfolio/aggregate-masonsand-6ton.jpg",
+      "description": "6 tons of mason sand delivered for construction project"
+    },
+    {
+      "category": "Aggregate Delivery",
+      "title": "KGE 11 Tons",
+      "image": "assets/img/portfolio/aggregate-kge-10ton.jpg",
+      "description": "11 tons of KGE delivered for driveway refresh"
+    },
+    {
+      "category": "Aggregate Delivery",
+      "title": "River Egg Rock - 2 Tons",
+      "image": "assets/img/portfolio/aggregate-riverrock-2ton.png",
+      "description": "2 tons of river egg rock delivered for landscaping project"
+    },
+    {
+      "category": "Aggregate Delivery",
+      "title": "3/4\" - Grey Hard Rock",
+      "image": "assets/img/portfolio/aggregate-3-4-smalldriveway.jpg",
+      "description": "Small driveway to backyard garage"
+    },
+    {
+      "category": "Aggregate Delivery",
+      "title": "3/4\" - Grey Hard Rock",
+      "image": "assets/img/portfolio/aggregate-3-4-parking.jpg",
+      "description": "Trailer parking pad"
+    },
+    {
+      "category": "Aggregate Delivery",
+      "title": "3/4\" - Grey Hard Rock",
+      "image": "assets/img/portfolio/aggregate-3-4-garagedrive.jpg",
+      "description": "Small driveway to backyard garage"
+    },
+    {
+      "category": "Aggregate Delivery",
+      "title": "3/4\" - Grey Hard Rock",
+      "image": "assets/img/portfolio/aggregate-3-4-backpath.jpg",
+      "description": "Motorcycle pathway to backyard garage"
+    },
+    {
+      "category": "Aggregate Delivery",
+      "title": "1inch\" - Grey Hard Rock",
+      "image": "assets/img/portfolio/aggregate-1inch-rvparking.jpg",
+      "description": "RV parking area"
+    },
+    {
+      "category": "Aggregate Delivery",
+      "title": "1inch\" - Grey Hard Rock",
+      "image": "assets/img/portfolio/aggregate-1inch-62ton.jpg",
+      "description": "Entire Driveway Refresh"
+    }
+  ],
+  "categories": [
+    "Dumpster Rentals",
+    "Aggregate Delivery"
+  ]
+}
