@@ -99,14 +99,16 @@
             <span>Unhitched Operations</span>
           </div>
         </a>
-        <nav class="nav">
-            <div style="display: flex; flex-direction: row; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap; justify-content: center; width: 100%;">
-              <a href="portfolio.html" class="nav-btn" style="margin-top: 0; font-size: clamp(0.8rem, 2.5vw, 1rem); flex-shrink: 1; min-width: fit-content;">🖼️ Portfolio</a>
-              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem; flex-shrink: 1; min-width: fit-content;">
-                <a href="#" id="calculator-trigger" class="nav-btn" style="box-shadow: 0 0 18px rgba(204,92,0,0.35), 0 0 34px rgba(204,92,0,0.22), 0 0 52px rgba(204,92,0,0.12); font-size: clamp(0.75rem, 2.5vw, 1rem); white-space: normal; min-width: fit-content;">🚛 Service Pricing Calculator</a>
-                <span style="font-size: clamp(0.6rem, 1.5vw, 0.75rem); color: var(--brand-text-muted); font-weight: 500; animation: wave-text 2s ease-in-out infinite;">Click to get your estimate <span style="display: inline-block; animation: finger-bounce 1s ease-in-out infinite;">☝️</span></span>
+        <nav class="nav header-nav">
+            <div class="header-nav-row">
+              <div class="header-primary-actions">
+                <a href="portfolio.html" class="nav-btn">🖼️ Portfolio</a>
+                <div class="calculator-cta-wrap">
+                  <a href="#" id="calculator-trigger" class="nav-btn calculator-trigger-btn">🚛 Service Pricing Calculator</a>
+                  <span class="calculator-hint">Click to get your estimate <span style="display: inline-block; animation: finger-bounce 1s ease-in-out infinite;">☝️</span></span>
+                </div>
               </div>
-              <a href="https://www.facebook.com/profile.php?id=61569244888866" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; justify-content: center; width: clamp(38px, 9vw, 44px); height: clamp(38px, 9vw, 44px); background: #1877F2; border-radius: 50%; color: white; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0;" title="Visit us on Facebook" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 4px 12px rgba(24, 119, 242, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+              <a href="https://www.facebook.com/profile.php?id=61569244888866" target="_blank" rel="noopener noreferrer" class="facebook-link" title="Visit us on Facebook" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 4px 12px rgba(24, 119, 242, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
                   <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047v-2.66c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.971h-1.513c-1.491 0-1.956.93-1.956 1.886v2.265h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
                 </svg>

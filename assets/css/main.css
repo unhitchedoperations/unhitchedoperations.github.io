@@ -263,6 +263,60 @@ a {
   gap: 1.25rem;
 }
 
+.header-nav {
+  width: 100%;
+}
+
+.header-nav-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.header-primary-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.calculator-cta-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.calculator-trigger-btn {
+  box-shadow: 0 0 18px rgba(204, 92, 0, 0.35), 0 0 34px rgba(204, 92, 0, 0.22), 0 0 52px rgba(204, 92, 0, 0.12);
+}
+
+.calculator-hint {
+  font-size: clamp(0.6rem, 1.5vw, 0.75rem);
+  color: var(--brand-text-muted);
+  font-weight: 500;
+  animation: wave-text 2s ease-in-out infinite;
+  text-align: center;
+}
+
+.facebook-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(38px, 9vw, 44px);
+  height: clamp(38px, 9vw, 44px);
+  background: #1877F2;
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+}
+
 .nav a {
   color: var(--brand-text);
   text-decoration: none;
@@ -1116,6 +1170,48 @@ select option {
 /* Responsive */
 
 @media (max-width: 768px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .header-nav-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+
+  .header-primary-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    width: 100%;
+    align-items: start;
+  }
+
+  .header-primary-actions > .nav-btn,
+  .header-primary-actions .calculator-cta-wrap {
+    min-width: 0;
+  }
+
+  .header-primary-actions .nav-btn {
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    padding: 0.55rem 0.6rem;
+  }
+
+  .calculator-hint {
+    font-size: 0.6rem;
+    white-space: nowrap;
+  }
+
+  .facebook-link {
+    align-self: center;
+  }
+
   .hero {
     grid-template-columns: 1fr;
   }
