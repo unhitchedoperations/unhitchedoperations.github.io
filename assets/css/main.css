@@ -281,9 +281,14 @@ a {
 .header-primary-actions {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
   flex-wrap: nowrap;
+}
+
+.header-primary-actions > .nav-btn,
+.header-primary-actions > .facebook-link {
+  align-self: flex-start;
 }
 
 .calculator-cta-wrap {
@@ -1216,7 +1221,7 @@ select option {
   }
 
   .facebook-link {
-    align-self: center;
+    align-self: flex-start;
     justify-self: end;
     width: 38px;
     height: 38px;
