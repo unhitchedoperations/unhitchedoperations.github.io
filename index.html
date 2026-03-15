@@ -85,6 +85,12 @@
     }
     </script>
     
+    <script>
+      (function() {
+        var t = localStorage.getItem('theme') || 'light';
+        if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      })();
+    </script>
     <link href="assets/css/main.css" rel="stylesheet">
   </head>
   <body>
@@ -103,15 +109,13 @@
             <div class="header-nav-row">
               <div class="header-primary-actions">
                 <a href="portfolio.html" class="nav-btn">🖼️ Portfolio</a>
-                <div class="calculator-cta-wrap">
-                  <a href="#" id="calculator-trigger" class="nav-btn calculator-trigger-btn">🚛 Service Pricing Calculator</a>
-                  <span class="calculator-hint">Click to get your estimate <span style="display: inline-block; animation: finger-bounce 1s ease-in-out infinite;">☝️</span></span>
-                </div>
+                <a href="pricing-calculator.html" class="nav-btn calculator-trigger-btn">🚛 Pricing Calculator</a>
                 <a href="https://www.facebook.com/profile.php?id=61569244888866" target="_blank" rel="noopener noreferrer" class="facebook-link" title="Visit us on Facebook" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 4px 12px rgba(24, 119, 242, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047v-2.66c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.971h-1.513c-1.491 0-1.956.93-1.956 1.886v2.265h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
                   </svg>
                 </a>
+                <button id="theme-toggle" class="theme-toggle-btn" title="Switch to dark mode" onclick="toggleTheme()">🌙</button>
               </div>
             </div>
         </nav>
@@ -178,78 +182,6 @@
 
     </div>
 
-    <!-- Modal -->
-    <div id="calculator-modal" class="modal">
-      <div class="modal-overlay"></div>
-      <div class="modal-content">
-        <button class="modal-close" id="modal-close">&times;</button>
-        <section class="pricing-calculator" style="margin: 0;">
-          <h2 class="section-title" style="display: block; margin-bottom: 1.5rem;">Pricing Calculator</h2>
-          <div class="calculator-grid">
-            <div class="calc-group">
-              <label>Service Type</label>
-              <select id="service-type">
-                <option value="aggregate">Aggregate Delivery</option>
-                <option value="dumpster">Dumpster Rental</option>
-              </select>
-            </div>
-          </div>
-          <div id="gravel-fields" class="calculator-grid">
-            <div class="calc-group">
-              <label id="quantity-label">Product</label>
-              <select id="product">
-                <option value="">Select product</option>
-              </select>
-            </div>
-            
-            <div class="calc-group">
-              <label>Tonnage</label>
-              <select id="tonnage">
-                <option value="">Select tonnage</option>
-              </select>
-            </div>
-          </div>
-          <div id="product-image-container" style="display: none; margin: 1.5rem 0;">
-            <div id="product-images-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 700px; margin: 0 auto;">
-            </div>
-          </div>
-          <div id="product-description-container" style="display: none; margin: 1.5rem 0; padding: 1rem; background: rgba(17, 24, 39, 0.5); border-radius: 8px; border-left: 4px solid var(--brand-accent);">
-            <div id="product-description" style="font-size: 0.9rem; color: var(--brand-text-muted); white-space: pre-line; line-height: 1.6;"></div>
-          </div>
-          <div id="dumpster-fields" class="calculator-grid" style="display: none;">
-            <div class="calc-group">
-              <label>Rental Duration</label>
-              <select id="duration">
-                <option value="">Select duration</option>
-                <option value="1-day">1-day rental</option>
-                <option value="3-day">3-day rental</option>
-              </select>
-            </div>
-          </div>
-          
-          <div class="calculator-grid bottom-row">
-            <div class="calc-group result">
-              <label>Estimated Price</label>
-              <div id="price-result">💰 $0.00</div>
-            </div>
-          </div>
-          
-          <p class="calc-note" style="margin-top: 1.5rem;" id="calc-note">
-            <strong>Includes:</strong> Material • Delivery • Tailgate spreading • Light raking
-          </p>
-          
-          <button class="btn btn-secondary" id="modal-close-btn" style="width: 100%; margin-top: 1.5rem;">Close Calculator</button>
-        </section>
-      </div>
-    </div>
-
-    <!-- Rental Agreement Modal -->
-    <div id="agreement-modal" class="modal" style="display: none;">
-      <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
-        <button class="modal-close" id="agreement-modal-close">&times;</button>
-        <iframe src="rental-agreement.html" style="width: 100%; height: 100vh; border: none; border-radius: 8px;"></iframe>
-      </div>
-    </div>
 
     <!-- Service Area Image Modal -->
     <div id="service-area-modal" class="modal service-area-modal">

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Pricing Calculator | Unhitched Operations</title>
+    <meta name="description" content="Get an instant price estimate for aggregate delivery or dumpster rental. Select your material and tonnage to see delivered pricing.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="https://www.unhitchedoperations.com/pricing-calculator.html">
+    <link rel="icon" type="image/png" href="assets/img/website-favicon-transparent.png">
+    <link rel="apple-touch-icon" href="assets/img/website-favicon-transparent.png">
+    <meta name="theme-color" content="#1ABC9C">
+    <script>
+      (function() {
+        var t = localStorage.getItem('theme') || 'light';
+        if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      })();
+    </script>
+    <link href="assets/css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="top-banner">
+      💬 Text - <a href="sms:316-688-2500">316-688-2500</a> to get scheduled.
+    </div>
+    <div class="page">
+      <header class="site-header">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+          <div class="logo">
+            <img src="assets/img/website-favicon-transparent.png" alt="Unhitched Operations" class="logo-mark">
+            <span>Unhitched Operations</span>
+          </div>
+        </a>
+        <nav class="nav header-nav">
+          <div class="header-nav-row">
+            <div class="header-primary-actions">
+              <a href="index.html" class="nav-btn">← Home</a>
+              <a href="https://www.facebook.com/profile.php?id=61569244888866" target="_blank" rel="noopener noreferrer" class="facebook-link" title="Visit us on Facebook" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 4px 12px rgba(24, 119, 242, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047v-2.66c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.971h-1.513c-1.491 0-1.956.93-1.956 1.886v2.265h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+                </svg>
+              </a>
+              <button id="theme-toggle" class="theme-toggle-btn" title="Switch to dark mode" onclick="toggleTheme()">🌙</button>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Pricing Calculator</span>
+      </nav>
+
+      <main>
+        <section class="pricing-calculator">
+          <h1 class="section-title" style="display: block; margin-bottom: 0.25rem;">Pricing Calculator</h1>
+          <p class="section-sub" style="margin-bottom: 0.75rem;">Select your service type, material, and quantity to get an instant delivered price estimate.</p>
+
+          <p class="calc-note" style="margin-bottom: 1.5rem;" id="calc-note">
+            <strong>Includes:</strong> Material • Delivery • Tailgate spreading • Light raking
+          </p>
+
+          <div class="calc-inputs-row">
+            <div class="calculator-grid">
+              <div class="calc-group">
+                <label>Service Type</label>
+                <select id="service-type">
+                  <option value="aggregate">Aggregate Delivery</option>
+                  <option value="dumpster">Dumpster Rental</option>
+                </select>
+              </div>
+            </div>
+            <div id="gravel-fields" class="calculator-grid">
+              <div class="calc-group calc-group-product">
+                <label id="quantity-label">Product</label>
+                <select id="product">
+                  <option value="">Select product</option>
+                </select>
+              </div>
+              <div class="calc-group">
+                <label>Tonnage</label>
+                <select id="tonnage">
+                  <option value="">Select tonnage</option>
+                </select>
+              </div>
+            </div>
+            <div id="dumpster-fields" class="calculator-grid" style="display: none;">
+              <div class="calc-group">
+                <label>Rental Duration</label>
+                <select id="duration">
+                  <option value="">Select duration</option>
+                  <option value="1-day">1-day rental</option>
+                  <option value="3-day">3-day rental</option>
+                </select>
+              </div>
+            </div>
+            <div class="calculator-grid bottom-row">
+              <div class="calc-group result">
+                <label>Estimated Price</label>
+                <div id="price-result">💰 $0.00</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="product-image-container" style="display: none; margin: 1.5rem 0;">
+            <div id="product-images-grid" class="product-images-grid">
+            </div>
+          </div>
+          <div id="product-description-container" style="display: none; margin: 1.5rem 0; padding: 1rem; background: rgba(17, 24, 39, 0.5); border-radius: 8px; border-left: 4px solid var(--brand-accent);">
+            <div id="product-description" style="font-size: 0.9rem; color: var(--brand-text-muted); white-space: pre-line; line-height: 1.6;"></div>
+          </div>
+
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-contact">
+          <span>Unhitched Operations, LLC</span> ·
+          <a href="sms:316-688-2500">316-688-2500</a> ·
+          <a href="mailto:unhitchedoperationsllc@gmail.com">unhitchedoperationsllc@gmail.com</a>
+        </div>
+        <div>© <span id="year"></span> Unhitched Operations, LLC</div>
+      </footer>
+    </div>
+
+    <!-- Image Lightbox -->
+    <div id="img-lightbox" class="img-lightbox">
+      <button class="img-lightbox-close" id="img-lightbox-close" aria-label="Close image">&times;</button>
+      <img id="img-lightbox-img" class="img-lightbox-img" src="" alt="">
+    </div>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

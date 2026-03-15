@@ -1,15 +1,27 @@
 /* ===== Theme (colors, typography) ===== */
-/* ===== Theme (Black + Orange) ===== */
+/* ===== Light Mode (default) ===== */
 :root {
-  --brand-bg: #000000;              /* pure black background */
-  --brand-surface: #111111;         /* near‑black cards */
-  --brand-border: #222222;          /* subtle borders */
-  --brand-border-strong: #333333;   /* stronger borders */
+  --brand-bg: #f5f3f0;              /* warm off-white background */
+  --brand-surface: #ffffff;         /* white cards */
+  --brand-border: #e2dbd0;          /* warm light border */
+  --brand-border-strong: #c8bfb5;   /* stronger warm border */
 
-  --brand-text: #ffffff;            /* white primary text */
-  --brand-text-muted: #b0b0b0;      /* light gray muted text */
-  --brand-accent: #CC5C00;          /* your orange */
+  --brand-text: #1a1714;            /* near-black warm text */
+  --brand-text-muted: #5c524c;      /* warm gray muted text — dark enough to contrast on light bg */
+  --brand-accent: #CC5C00;          /* orange */
   --brand-accent-hover: #e06a11;    /* slightly brighter on hover */
+}
+
+/* ===== Dark Mode ===== */
+[data-theme="dark"] {
+  --brand-bg: #000000;
+  --brand-surface: #111111;
+  --brand-border: #222222;
+  --brand-border-strong: #333333;
+  --brand-text: #ffffff;
+  --brand-text-muted: #b0b0b0;
+  --brand-accent: #CC5C00;
+  --brand-accent-hover: #e06a11;
 }
 
 /* ===== Button Animations ===== */
@@ -827,19 +839,142 @@ a {
   margin-bottom: 1rem;
 }
 
-.modal .calculator-grid {
-  grid-template-columns: 1fr 1fr;
+/* Single-row flex layout for all dropdowns */
+.calc-inputs-row {
+  display: flex;
+  flex-wrap: wrap;
   gap: 1.25rem;
+  align-items: flex-end;
   margin-bottom: 1rem;
 }
 
-.modal .calculator-grid.bottom-row {
-  grid-template-columns: 1fr;
-  margin-bottom: 0;
+/* Make inner grid wrappers transparent to flex layout */
+.calc-inputs-row > .calculator-grid {
+  display: contents;
 }
 
-.modal .calc-group.result {
+/* Each dropdown is a flex item */
+.calc-inputs-row .calc-group {
+  flex: 1 1 150px;
+  min-width: 130px;
+}
+
+/* Product dropdown gets extra width for longer names */
+.calc-inputs-row .calc-group-product {
+  flex: 2 1 200px;
+}
+
+.calc-group.result {
   grid-column: auto;
+}
+
+/* ===== Product Images Grid ===== */
+
+.product-images-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.product-image-thumb {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+  object-fit: cover;
+  cursor: zoom-in;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+  flex-shrink: 0;
+}
+
+.product-image-thumb:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== Image Lightbox ===== */
+
+.img-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  cursor: zoom-out;
+}
+
+.img-lightbox.active {
+  display: flex;
+}
+
+.img-lightbox-img {
+  max-width: min(90vw, 820px);
+  max-height: 85vh;
+  border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7);
+  cursor: default;
+}
+
+.img-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.img-lightbox-close:hover {
+  background: rgba(0, 0, 0, 0.85);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===== Breadcrumb ===== */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--brand-text-muted);
+  padding: 0.6rem 0 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.breadcrumb a {
+  color: var(--brand-text-muted);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.breadcrumb a:hover {
+  color: var(--brand-accent);
+}
+
+.breadcrumb-sep {
+  color: var(--brand-border-strong);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.breadcrumb-current {
+  color: var(--brand-text);
+  font-weight: 500;
 }
 
 .mileage-note {
@@ -854,12 +989,9 @@ a {
     grid-template-columns: 1fr;
   }
   
-  .modal .calculator-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .modal .calc-group.result {
-    grid-column: auto;
+  .calc-inputs-row .calc-group,
+  .calc-inputs-row .calc-group-product {
+    flex: 1 1 100%;
   }
 }
 
@@ -892,6 +1024,15 @@ a {
 select option {
   background: #111;
   color: var(--brand-text);
+}
+
+select optgroup {
+  background: #111;
+  color: var(--brand-accent);
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.04em;
 }
 
 .mileage-display #mileage-result {
@@ -1142,7 +1283,7 @@ select option {
   border: 1px solid var(--brand-border-strong);
   border-radius: 12px;
   padding: 2rem;
-  max-width: 750px;
+  max-width: 950px;
   width: 100%;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
   max-height: 90vh;
@@ -1241,4 +1382,181 @@ select option {
   .calculator-grid {
     grid-template-columns: 1fr !important;
   }
+
+  .header-primary-actions {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto auto;
+  }
+}
+
+/* ===== Theme Toggle Button ===== */
+
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.3rem;
+  border-radius: 50%;
+  transition: transform 150ms ease, opacity 150ms ease;
+  flex-shrink: 0;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.15);
+  opacity: 0.85;
+}
+
+/* ===== Light Mode Overrides (for hardcoded dark values) ===== */
+
+html:not([data-theme="dark"]) body {
+  background: linear-gradient(135deg, #f5f3f0 0%, #ece6de 50%, #f2ede6 100%);
+}
+
+html:not([data-theme="dark"]) .top-banner {
+  background: var(--brand-accent);
+  color: #1a1714;
+  border-top-color: #a34800;
+  border-bottom-color: #b35200;
+}
+
+html:not([data-theme="dark"]) .top-banner a {
+  color: #1a1714;
+  font-weight: 800;
+}
+
+html:not([data-theme="dark"]) .hero {
+  background: linear-gradient(135deg, #ece6de 0%, #e0d8cc 50%, #e8e2d8 100%);
+}
+
+html:not([data-theme="dark"]) .hero-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f5f0ea 100%);
+  box-shadow: 0 18px 40px rgba(204, 92, 0, 0.12), 0 0 40px rgba(204, 92, 0, 0.06);
+}
+
+html:not([data-theme="dark"]) .header-review-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f3ee 50%, #f5f0ea 100%);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.12), 0 0 24px rgba(204, 92, 0, 0.08);
+}
+
+html:not([data-theme="dark"]) .header-review-card::after {
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+html:not([data-theme="dark"]) .hero-pill {
+  background: #e8e2d8;
+}
+
+html:not([data-theme="dark"]) .nav-btn {
+  background: linear-gradient(180deg, #f0ede8 0%, #e5e0d8 100%);
+  color: #1a1714 !important;
+  border-color: #c8bfb5;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 6px rgba(0, 0, 0, 0.10);
+}
+
+html:not([data-theme="dark"]) .nav-btn:hover {
+  background: linear-gradient(180deg, #e8e3db 0%, #ddd7cc 100%);
+  color: #000000 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 10px rgba(0, 0, 0, 0.14);
+}
+
+html:not([data-theme="dark"]) #modal-close-btn {
+  background: linear-gradient(180deg, #f0ede8 0%, #e5e0d8 100%) !important;
+  color: #1a1714 !important;
+  border-color: #c8bfb5 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 6px rgba(0, 0, 0, 0.10) !important;
+}
+
+html:not([data-theme="dark"]) #modal-close-btn:hover {
+  background: linear-gradient(180deg, #e8e3db 0%, #ddd7cc 100%) !important;
+  color: #000000 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 10px rgba(0, 0, 0, 0.14) !important;
+}
+
+html:not([data-theme="dark"]) .sidebar-cta-btn {
+  background: var(--brand-accent);
+  color: #1a1714;
+  border-color: #a34800;
+  box-shadow: 0 4px 12px rgba(204, 92, 0, 0.30);
+}
+
+html:not([data-theme="dark"]) .sidebar-cta-btn:hover {
+  background: var(--brand-accent-hover);
+  color: #000000;
+  box-shadow: 0 6px 16px rgba(204, 92, 0, 0.40);
+}
+
+html:not([data-theme="dark"]) .pricing-calculator {
+  background: linear-gradient(145deg, #f8f5f2 0%, #f0ebe5 100%);
+  border-color: #d5ccc0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+html:not([data-theme="dark"]) .calc-group select {
+  background: #ffffff;
+  border-color: #c8bfb5;
+  color: #1a1714;
+}
+
+html:not([data-theme="dark"]) select option {
+  background: #ffffff;
+  color: #1a1714;
+}
+
+html:not([data-theme="dark"]) select optgroup {
+  background: #ffffff;
+  color: var(--brand-accent);
+}
+
+html:not([data-theme="dark"]) .mileage-display #mileage-result {
+  background: #f0ede8;
+  border-color: #c8bfb5;
+}
+
+html:not([data-theme="dark"]) .btn-secondary {
+  background: #f0ede8;
+  color: var(--brand-text);
+  border-color: #c8bfb5;
+}
+
+html:not([data-theme="dark"]) .btn-secondary:hover {
+  background: #e8e3db;
+  border-color: var(--brand-accent);
+}
+
+html:not([data-theme="dark"]) .btn-ghost {
+  border-color: #c8bfb5;
+}
+
+html:not([data-theme="dark"]) .card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f4f0 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+html:not([data-theme="dark"]) .card:hover {
+  background: linear-gradient(135deg, #f5f0ea 0%, #f0e8e0 100%);
+}
+
+html:not([data-theme="dark"]) .card-badge {
+  background: var(--brand-accent);
+  color: #1a1714;
+  border-color: #a34800;
+  box-shadow: 0 2px 8px rgba(204, 92, 0, 0.35);
+}
+
+html:not([data-theme="dark"]) .modal-content {
+  background: #ffffff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.20);
+}
+
+html:not([data-theme="dark"]) #product-description-container {
+  background: rgba(204, 92, 0, 0.06) !important;
+}
+
+html:not([data-theme="dark"]) .section-title:before {
+  background: linear-gradient(180deg, var(--brand-accent), #c8bfb5);
 }

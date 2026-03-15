@@ -31,6 +31,12 @@
     <!-- Theme Color -->
     <meta name="theme-color" content="#1ABC9C">
     
+    <script>
+      (function() {
+        var t = localStorage.getItem('theme') || 'light';
+        if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      })();
+    </script>
     <link href="assets/css/main.css" rel="stylesheet">
     <style>
       .portfolio-header {
@@ -145,10 +151,21 @@
             <span>Unhitched Operations</span>
           </div>
         </a>
-        <nav class="nav">
-          <a href="index.html" class="nav-btn">← Home</a>
+        <nav class="nav header-nav">
+          <div class="header-nav-row">
+            <div class="header-primary-actions">
+              <a href="index.html" class="nav-btn">← Home</a>
+              <button id="theme-toggle" class="theme-toggle-btn" title="Switch to dark mode" onclick="toggleTheme()">🌙</button>
+            </div>
+          </div>
         </nav>
       </header>
+
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Portfolio</span>
+      </nav>
 
       <main>
         <section class="hero" style="margin-bottom: 3rem; padding-bottom: 0;">
@@ -250,5 +267,6 @@
 
       loadPortfolio();
     </script>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>

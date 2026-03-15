@@ -5,31 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // Modal functionality
-  const modal = document.getElementById("calculator-modal");
-  const trigger = document.getElementById("calculator-trigger");
-  const closeBtn = document.getElementById("modal-close");
-  const closeBtnText = document.getElementById("modal-close-btn");
-  const overlay = modal ? modal.querySelector(".modal-overlay") : null;
-
   // Service area image modal functionality
   const serviceAreaModal = document.getElementById("service-area-modal");
   const serviceAreaOpen = document.getElementById("service-area-open");
   const serviceAreaClose = document.getElementById("service-area-close");
   const serviceAreaOverlay = serviceAreaModal ? serviceAreaModal.querySelector(".modal-overlay") : null;
-
-  if (trigger) {
-    trigger.addEventListener("click", (e) => {
-      e.preventDefault();
-      modal.classList.add("active");
-      document.body.style.overflow = "hidden";
-    });
-  }
-
-  function closeModal() {
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
-  }
 
   function openServiceAreaModal() {
     if (!serviceAreaModal) return;
@@ -41,18 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!serviceAreaModal) return;
     serviceAreaModal.classList.remove("active");
     document.body.style.overflow = "";
-  }
-
-  if (closeBtn) {
-    closeBtn.addEventListener("click", closeModal);
-  }
-
-  if (closeBtnText) {
-    closeBtnText.addEventListener("click", closeModal);
-  }
-
-  if (overlay) {
-    overlay.addEventListener("click", closeModal);
   }
 
   if (serviceAreaOpen) {
@@ -70,45 +38,41 @@ document.addEventListener("DOMContentLoaded", () => {
     serviceAreaOverlay.addEventListener("click", closeServiceAreaModal);
   }
 
+  // Image lightbox
+  const imgLightbox = document.getElementById('img-lightbox');
+  const imgLightboxClose = document.getElementById('img-lightbox-close');
+
+  function openImageLightbox(src, alt) {
+    if (!imgLightbox) return;
+    document.getElementById('img-lightbox-img').src = src;
+    document.getElementById('img-lightbox-img').alt = alt;
+    imgLightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeImageLightbox() {
+    if (!imgLightbox) return;
+    imgLightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (imgLightboxClose) {
+    imgLightboxClose.addEventListener('click', closeImageLightbox);
+  }
+
+  if (imgLightbox) {
+    imgLightbox.addEventListener('click', (e) => {
+      if (e.target === imgLightbox) closeImageLightbox();
+    });
+  }
+
   // Close modal on Escape key
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("active")) {
-      closeModal();
-    }
     if (e.key === "Escape" && serviceAreaModal && serviceAreaModal.classList.contains("active")) {
       closeServiceAreaModal();
     }
-  });
-
-  // Rental Agreement Modal functionality
-  const agreementModal = document.getElementById("agreement-modal");
-  const agreementCloseBtn = document.getElementById("agreement-modal-close");
-
-  if (agreementCloseBtn) {
-    agreementCloseBtn.addEventListener("click", () => {
-      agreementModal.style.display = "none";
-      document.body.style.overflow = "";
-    });
-  }
-
-  // Handle rental agreement modal overlay click
-  if (agreementModal) {
-    agreementModal.addEventListener("click", (e) => {
-      if (e.target === agreementModal) {
-        agreementModal.style.display = "none";
-        document.body.style.overflow = "";
-      }
-    });
-  }
-
-  // Handle rental agreement links
-  document.addEventListener("click", (e) => {
-    if (e.target.textContent.includes("View Agreement") || e.target.closest('[onclick*="openAgreement"]')) {
-      e.preventDefault();
-      if (agreementModal) {
-        agreementModal.style.display = "flex";
-        document.body.style.overflow = "hidden";
-      }
+    if (e.key === "Escape") {
+      closeImageLightbox();
     }
   });
 
@@ -197,7 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const imgElement = document.createElement('img');
                 imgElement.src = `assets/img/products/${filename}`;
                 imgElement.alt = `${product.name} - ${filename}`;
-                imgElement.style.cssText = 'width: 100%; height: auto; border-radius: 8px; object-fit: cover; aspect-ratio: 1;';
+                imgElement.classList.add('product-image-thumb');
+                imgElement.addEventListener('click', () => openImageLightbox(imgElement.src, imgElement.alt));
                 productImagesGrid.appendChild(imgElement);
               });
               productImageContainer.style.display = 'block';
@@ -232,16 +197,31 @@ document.addEventListener("DOMContentLoaded", () => {
           
           if (serviceType === 'aggregate') {
             // Show aggregate fields, hide dumpster
-            gravelFields.style.display = 'grid';
+            gravelFields.style.display = 'contents';
             dumpsterFields.style.display = 'none';
             
-            // Update products dropdown for aggregate only
-            productSelect.innerHTML = `<option value="">Select product</option>`;
+            // Update products dropdown for aggregate, grouped by category
+            productSelect.innerHTML = '';
+            productSelect.appendChild(new Option('Select product', ''));
+
+            const categoryGroups = {};
             Object.keys(pricingData.products).forEach(key => {
               const product = pricingData.products[key];
               if (product.type === 'aggregate') {
-                productSelect.innerHTML += `<option value="${key}">${product.name}</option>`;
+                const cat = product.category || 'other';
+                if (!categoryGroups[cat]) categoryGroups[cat] = [];
+                categoryGroups[cat].push({ key, product });
               }
+            });
+
+            Object.keys(categoryGroups).forEach(cat => {
+              const catLabel = (pricingData.categories && pricingData.categories[cat]) || cat;
+              const group = document.createElement('optgroup');
+              group.label = catLabel;
+              categoryGroups[cat].forEach(({ key, product }) => {
+                group.appendChild(new Option(product.name, key));
+              });
+              productSelect.appendChild(group);
             });
             
             calcNote.innerHTML = '<strong>Includes:</strong> Material • Delivery • Tailgate spreading • Light raking';
@@ -249,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
           } else if (serviceType === 'dumpster') {
             // Hide aggregate fields, show dumpster
             gravelFields.style.display = 'none';
-            dumpsterFields.style.display = 'grid';
+            dumpsterFields.style.display = 'contents';
             
             // Display dumpster product images
             const dumpsterProduct = pricingData.products['dumpster'];
@@ -258,7 +238,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const imgElement = document.createElement('img');
                 imgElement.src = `assets/img/products/${filename}`;
                 imgElement.alt = `${dumpsterProduct.name} - ${filename}`;
-                imgElement.style.cssText = 'width: 100%; height: auto; border-radius: 8px; object-fit: cover; aspect-ratio: 1;';
+                imgElement.classList.add('product-image-thumb');
+                imgElement.addEventListener('click', () => openImageLightbox(imgElement.src, imgElement.alt));
                 productImagesGrid.appendChild(imgElement);
               });
               productImageContainer.style.display = 'block';
@@ -333,6 +314,29 @@ document.addEventListener("DOMContentLoaded", () => {
     container.innerHTML = reviewsHTML;
   }
   
+  // Apply saved theme on load and update button icon
+  (function initTheme() {
+    const saved = localStorage.getItem('theme') || 'light';
+    const btn = document.getElementById('theme-toggle');
+    if (btn) btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+  })();
+
   initCalculator();
   loadGoogleReviewsWidget();
 });
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  const next = current === 'light' ? 'dark' : 'light';
+  if (next === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+  localStorage.setItem('theme', next);
+  const btn = document.getElementById('theme-toggle');
+  if (btn) {
+    btn.textContent = next === 'dark' ? '☀️' : '🌙';
+    btn.title = next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+  }
+}
