@@ -13,75 +13,402 @@
       "quantityLabel": "Rental Duration"
     }
   },
+  "categories": {
+    "sand-gravel": "Sand & Gravel",
+    "topsoil-fill": "Topsoil & Fill Dirt",
+    "base-gravel": "Base Gravel",
+    "gravel": "Gravel",
+    "decorative": "Decorative Rock"
+  },
   "products": {
-    "sand-dirt": {
-      "name": "Sand, Fill Dirt, Pea Gravel",
+    "fill-sand": {
+      "name": "Fill Sand",
       "type": "aggregate",
-      "images": ["fill-sand.jpg", "mason-sand.jpg", "fill-dirt.jpg", "pea-sand.jpg"],
-      "description": "<strong>Fill Sand:</strong> Great for general fill, leveling low spots, and base layers. Inexpensive option for large fill projects.\n<strong>Fill Dirt:</strong> Perfect for filling holes, low areas, or general landscaping projects. Contains natural topsoil content.\n<strong>Pea Gravel:</strong> Decorative and comfortable for walking areas. Good for landscaping, pathways, and decorative applications.",
+      "category": "sand-gravel",
+      "images": ["fill-sand-2.jpg", "fill-sand-detail.jpg"],
+      "description": "Great for general fill, leveling low spots, and base layers. An economical option for large fill projects and under slabs or pavers.",
       "prices": {
-        "1": 240,
-        "2": 250,
-        "3": 260,
-        "4": 270,
-        "5": 280,
-        "5.5": 285
+        "1": 239,
+        "2": 248,
+        "3": 257,
+        "4": 266,
+        "5": 275,
+        "5.5": 279.5
       }
     },
-    "topsoil": {
-      "name": "Shredded and Unshredded Topsoil",
+    "mason-sand": {
+      "name": "Mason Sand",
       "type": "aggregate",
-      "images": ["shredded-topsoil.jpg", "unshredded-topsoil.jpg"],
-      "description": "<strong>Shredded Topsoil:</strong> Ready-to-use for lawns, gardens, and landscaping. Fine, uniform texture for easy spreading and seeding.\n<strong>Unshredded Topsoil:</strong> More economical option with natural chunks. Great for bulk fill under lawns or in landscape beds.\n<strong>Both types</strong> are nutrient-rich and perfect for establishing new grass or garden areas.",
+      "category": "sand-gravel",
+      "images": ["mason-sand.jpg", "mason-sand-detail.jpg"],
+      "description": "Fine, clean sand ideal for masonry work, paver base leveling, sandbox fill, and general construction applications. Consistent texture for professional results.",
       "prices": {
-        "1": 260,
-        "2": 290,
-        "3": 320,
-        "4": 350,
-        "5": 380,
-        "5.5": 400
+        "1": 239.5,
+        "2": 249,
+        "3": 258.5,
+        "4": 268,
+        "5": 277.5,
+        "5.5": 282.25
       }
     },
-    "hard-rock-gravel": {
-      "name": "Hard Rock (3/4\" - 1\") & 3/8\" Chip Gravel",
+    "concrete-sand": {
+      "name": "Concrete Sand",
       "type": "aggregate",
-      "images": ["3-4-gravel.jpg", "3-8-chip-gravel.jpg"],
-      "description": "<strong>3/4\" to 1\" Hard Rock:</strong> Ideal for driveway and parking lot surfaces. Compacts well for a solid, stable driving surface. Excellent durability.\n<strong>3/8\" Chip Gravel:</strong> Great drainage material and decorative option. Works well as a top layer or for landscaping projects. Better for areas needing drainage.\n<strong>Both materials</strong> compact and lock together for superior road stability.",
+      "category": "sand-gravel",
+      "images": ["concrete-sand-1.jpg", "concrete-sand-2.jpg"],
+      "description": "Coarser washed sand used in concrete mixing, as a base for paving stones, and drainage applications. Meets ASTM standards for concrete aggregate.",
       "prices": {
-        "1": 270,
-        "2": 310,
-        "3": 350,
-        "4": 390,
-        "5": 430,
-        "5.5": 450
+        "1": 239.5,
+        "2": 249,
+        "3": 258.5,
+        "4": 268,
+        "5": 277.5,
+        "5.5": 282.25
       }
     },
-    "limestone": {
-      "name": "Limestone (1 1/2\" - 1 1/4\") Gravel",
+    "road-gravel": {
+      "name": "Road Gravel w/Pea Gravel",
       "type": "aggregate",
-      "images": ["limestone-1.25-gravel.jpg", "limestone-1.5-gravel.jpg"],
-      "description": "<strong>1 1/2\" Limestone:</strong> Excellent for driveway bases and heavy-traffic areas. Compacts firmly and provides superior stability.\n<strong>1 1/4\" Limestone:</strong> Slightly smaller size for more uniform appearance. Great for both base layers and top-layer finishing.\n<strong>Limestone</strong> naturally binds together when compacted, creating a solid, long-lasting surface. Superior to plain rock for load-bearing applications.",
+      "category": "sand-gravel",
+      "images": ["road-gravel.jpg", "road-gravel-bulk.jpg"],
+      "description": "A blend of road gravel and pea gravel. Good for driveways and pathways where a loose, natural appearance is desired. Provides decent drainage and a comfortable walking surface.",
+      "prices": {
+        "1": 242,
+        "2": 254,
+        "3": 266,
+        "4": 278,
+        "5": 290,
+        "5.5": 296
+      }
+    },
+    "fill-dirt": {
+      "name": "Fill Dirt",
+      "type": "aggregate",
+      "category": "topsoil-fill",
+      "images": ["fill-dirt.jpg"],
+      "description": "Perfect for filling holes, low areas, and grading projects. Contains natural soil content. Most economical option for large fill needs where soil quality is not a priority.",
+      "prices": {
+        "1": 238,
+        "2": 246,
+        "3": 254,
+        "4": 262,
+        "5": 270,
+        "5.5": 274
+      }
+    },
+    "unshredded-topsoil": {
+      "name": "Unshredded Topsoil",
+      "type": "aggregate",
+      "category": "topsoil-fill",
+      "images": ["unshredded-topsoil.jpg"],
+      "description": "A more economical topsoil option with natural chunks. Nutrient-rich and great for bulk fill under new lawns, in raised garden beds, and landscape areas. Will break down naturally over time.",
+      "prices": {
+        "1": 253,
+        "2": 276,
+        "3": 299,
+        "4": 322,
+        "5": 345,
+        "5.5": 356.5
+      }
+    },
+    "shredded-topsoil": {
+      "name": "Shredded Topsoil",
+      "type": "aggregate",
+      "category": "topsoil-fill",
+      "images": ["shredded-topsoil.jpg"],
+      "description": "Ready-to-use premium topsoil with a fine, uniform texture for easy spreading and seeding. Ideal for establishing new lawns, garden beds, and landscaping. Provides excellent nutrient content.",
+      "prices": {
+        "1": 259,
+        "2": 288,
+        "3": 317,
+        "4": 346,
+        "5": 375,
+        "5.5": 389.5
+      }
+    },
+    "base-crusher": {
+      "name": "Base / Crusher - 1-1/4\"",
+      "type": "aggregate",
+      "category": "base-gravel",
+      "images": ["screenings.jpg", "screenings-bulk.jpg"],
+      "description": "Crushed limestone base material ideal for driveways, parking areas, camper pads, and pothole repair. Compacts firmly to create a stable, load-bearing surface. Typically used as a base layer.",
+      "prices": {
+        "1": 263,
+        "2": 296,
+        "3": 329,
+        "4": 362,
+        "5": 395,
+        "5.5": 411.5
+      }
+    },
+    "hard-rock-base": {
+      "name": "Hard Rock Base - 1-1/2\"",
+      "type": "aggregate",
+      "category": "base-gravel",
+      "images": ["hard-rock-base.jpg"],
+      "description": "Larger crushed hard rock base material for heavy-duty applications. Excellent for driveways and areas with heavy vehicle traffic. Compacts well to provide superior load-bearing stability.",
+      "prices": {
+        "1": 269,
+        "2": 308,
+        "3": 347,
+        "4": 386,
+        "5": 425,
+        "5.5": 444.5
+      }
+    },
+    "ab3-base": {
+      "name": "AB3 Base - 1-1/2\"",
+      "type": "aggregate",
+      "category": "base-gravel",
+      "images": ["ab3.jpg", "ab3-bulk.jpg"],
+      "description": "Economical base material for driveways and parking areas. Consider topping with 3/4\" Hard Rock for a finished surface. Do not use in areas that are already wet or muddy — allow time for the material to dry out and stabilize.",
+      "prices": {
+        "1": 262,
+        "2": 294,
+        "3": 326,
+        "4": 358,
+        "5": 390,
+        "5.5": 406
+      }
+    },
+    "kge-base": {
+      "name": "KGE Base - 1-1/4\"",
+      "type": "aggregate",
+      "category": "base-gravel",
+      "images": ["kge-base.jpg", "kge-base-bulk.jpg"],
+      "description": "Crusher rock ideal for driveways, parking areas, camper pads, and filling potholes. Typically used as a base layer only. Compacts well for a stable, durable surface.",
+      "prices": {
+        "1": 264,
+        "2": 298,
+        "3": 332,
+        "4": 366,
+        "5": 400,
+        "5.5": 417
+      }
+    },
+    "cream-limestone": {
+      "name": "Cream Limestone - 1\"-3\"",
+      "type": "aggregate",
+      "category": "base-gravel",
+      "images": ["limestone-1x3.jpg", "limestone-1x3-bulk.jpg"],
+      "description": "Larger cream-colored limestone pieces for base and fill applications. Good for drainage layers, driveway base, and erosion control. Natural calcium carbonate binding improves over time.",
+      "prices": {
+        "1": 268,
+        "2": 306,
+        "3": 344,
+        "4": 382,
+        "5": 420,
+        "5.5": 439
+      }
+    },
+    "premium-hard-rock": {
+      "name": "Premium Hard Rock Gravel - 3/4\"-1\"",
+      "type": "aggregate",
+      "category": "gravel",
+      "images": ["hard-rock-base.jpg", "chip-rock-bulk.jpg"],
+      "description": "Top-choice driveway and parking lot surface material. Compacts well for a solid, stable driving surface with excellent durability. Locks together for superior road stability. The most popular choice for finished driveways.",
+      "prices": {
+        "1": 273,
+        "2": 316,
+        "3": 359,
+        "4": 402,
+        "5": 445,
+        "5.5": 466.5
+      }
+    },
+    "chip-drainage": {
+      "name": "3/8\" Chip - Drainage / Backfill Rock",
+      "type": "aggregate",
+      "category": "gravel",
+      "images": ["chip-rock.jpg", "chip-rock-alt.jpg"],
+      "description": "Small angular chip rock for drainage applications, backfill around foundations, French drains, and decorative landscaping. Excellent drainage properties and attractive appearance as a top layer.",
+      "prices": {
+        "1": 278,
+        "2": 326,
+        "3": 374,
+        "4": 422,
+        "5": 470,
+        "5.5": 494
+      }
+    },
+    "limestone-clean": {
+      "name": "Limestone - 1-1/4\" Clean Gravel",
+      "type": "aggregate",
+      "category": "gravel",
+      "images": ["limestone-14-clean.jpg", "limestone-14-clean-alt.jpg"],
+      "description": "Clean washed 1-1/4\" limestone gravel for driveways, pathways, and decorative use. Naturally binds when compacted for a solid, long-lasting surface. Excellent for load-bearing applications.",
+      "prices": {
+        "1": 268,
+        "2": 306,
+        "3": 344,
+        "4": 382,
+        "5": 420,
+        "5.5": 439
+      }
+    },
+    "limestone-screened": {
+      "name": "Limestone - 1-1/2\" Screened Gravel",
+      "type": "aggregate",
+      "category": "gravel",
+      "images": ["limestone-12-clean.jpg", "limestone-12-clean-alt.jpg"],
+      "description": "Screened 1-1/2\" limestone gravel for driveways and heavy-traffic areas. Compacts firmly and provides superior stability. Great for both base layers and top-layer finishing.",
       "prices": {
         "1": 265,
         "2": 300,
         "3": 335,
         "4": 370,
         "5": 405,
-        "5.5": 425
+        "5.5": 422.5
       }
     },
-    "kge-base": {
-      "name": "KGE & AB3 Base",
+    "colorado-small-large": {
+      "name": "Small & Large Colorado",
       "type": "aggregate",
-      "images": ["kge-1.25-base.jpg", "kge-ab3-base.jpg"],
-      "description": "<strong>KGE Base (Crusher Rock - 1 1/4\"):</strong> Ideal for driveways, parking areas, camper pads, and filling potholes. Typically used as a base layer only.\n<strong>AB-3 Base (1 1/2\"):</strong> Consider surfacing with 3/4\" Hard Rock if using for driveway or parking applications. Do not use AB-3 in areas that are already wet or muddy, as it can take time for the material to dry out and stabilize.",
+      "category": "decorative",
+      "images": ["small-colorado-river-rock.jpg", "large-colorado-river-rock.jpg"],
+      "description": "Smooth, rounded river rock with Colorado's signature warm earth tones of tan, brown, and rust. Available in a blend of small and large sizes. Popular for landscape beds, accent borders, and water features.",
       "prices": {
-        "1": 260,
-        "2": 290,
-        "3": 320,
-        "4": 350,
-        "5": 380,
-        "5.5": 400
+        "1": 445,
+        "2": 660,
+        "3": 875,
+        "4": 1090,
+        "5": 1305,
+        "5.5": 1412.5
+      }
+    },
+    "salt-pepper": {
+      "name": "Salt & Pepper - Small (1-2\") & Large",
+      "type": "aggregate",
+      "category": "decorative",
+      "images": ["salt-pepper-small-river-rock.jpg", "salt-pepper.jpg"],
+      "description": "Striking black and white speckled river rock in a blend of small 1-2\" and large sizes. Makes a bold visual statement in landscape beds, pathways, and decorative applications. High-contrast look works well against green plantings.",
+      "prices": {
+        "1": 457,
+        "2": 684,
+        "3": 911,
+        "4": 1138,
+        "5": 1365,
+        "5.5": 1478.5
+      }
+    },
+    "iowa": {
+      "name": "Iowa",
+      "type": "aggregate",
+      "category": "decorative",
+      "images": ["iowa-rock.jpg"],
+      "description": "Smooth rounded river rock with a mix of neutral gray, tan, and earthy tones. A versatile and natural-looking choice for landscape beds, edging, and ground cover. Blends naturally into most outdoor settings.",
+      "prices": {
+        "1": 434,
+        "2": 638,
+        "3": 842,
+        "4": 1046,
+        "5": 1250,
+        "5.5": 1352
+      }
+    },
+    "ozark-creek-3": {
+      "name": "Ozark Creek - 3\"",
+      "type": "aggregate",
+      "category": "decorative",
+      "images": ["ozark-rock-detail.jpg"],
+      "description": "Larger 3\" Ozark Creek river rock with natural gray, tan, and brown tones. Excellent for dry creek beds, water features, erosion control, and landscape accents. Distinctive look with smooth, water-worn surfaces.",
+      "prices": {
+        "1": 360,
+        "2": 490,
+        "3": 620,
+        "4": 750,
+        "5": 880,
+        "5.5": 945
+      }
+    },
+    "ozark-creek-pebbles": {
+      "name": "Ozark Creek Pebbles - 3/4\"-1-1/2\"",
+      "type": "aggregate",
+      "category": "decorative",
+      "images": ["ozark-pebble.jpg", "ozark-pebble-detail.jpg"],
+      "description": "Smaller Ozark Creek river pebbles in 3/4\" to 1-1/2\" size. Smooth, water-worn texture with natural gray and tan tones. Great for pathways, garden beds, ground cover, and decorative dry creek applications.",
+      "prices": {
+        "1": 360,
+        "2": 490,
+        "3": 620,
+        "4": 750,
+        "5": 880,
+        "5.5": 945
+      }
+    },
+    "colorado-cobble": {
+      "name": "Colorado Cobble - 8\"-12\"",
+      "type": "aggregate",
+      "category": "decorative",
+      "images": ["colorado-cobble-alt.jpg", "colorado-cobble-2.jpg"],
+      "description": "Large 8\" to 12\" cobblestones with warm Colorado earth tones of tan, brown, and rust. Ideal for edging, retaining walls, stepping stones, water features, and bold landscape accents. Creates a natural, dramatic effect.",
+      "prices": {
+        "1": 457,
+        "2": 684,
+        "3": 911,
+        "4": 1138,
+        "5": 1365,
+        "5.5": 1478.5
+      }
+    },
+    "dodge-city-small": {
+      "name": "Dodge City Small Egg Rock - 3/4\"-1-1/2\"",
+      "type": "aggregate",
+      "category": "decorative",
+      "images": ["sm-dodge-city-rock.jpg", "sm-dodge-city-rock-alt.jpg"],
+      "description": "Small egg-shaped river rock in warm tan and brown hues from the Dodge City area. Smooth, uniform appearance perfect for garden beds, pathways, and ground cover. Excellent for areas needing a tidy, manicured look.",
+      "prices": {
+        "1": 332,
+        "2": 434,
+        "3": 536,
+        "4": 638,
+        "5": 740,
+        "5.5": 791
+      }
+    },
+    "dodge-city-large": {
+      "name": "Dodge City Large Egg Rock - 1\"-3\"",
+      "type": "aggregate",
+      "category": "decorative",
+      "images": ["dodge-city-large-egg-rock.jpg", "dodge-city-large-egg-rock-alt-1000x667.jpg"],
+      "description": "Larger egg-shaped river rock with warm tan and brown tones. Smooth, rounded profile makes it ideal for landscape beds, water features, and accent areas. Pairs well with smaller Dodge City Egg Rock for layered designs.",
+      "prices": {
+        "1": 366,
+        "2": 502,
+        "3": 638,
+        "4": 774,
+        "5": 910,
+        "5.5": 978
+      }
+    },
+    "garden-city-large": {
+      "name": "Garden City Large Egg Rock - 1\"-4\"",
+      "type": "aggregate",
+      "category": "decorative",
+      "images": ["garden-city-large-egg-rock.jpg", "garden-city-large-egg-rock-alt-1000x667.jpg"],
+      "description": "Large 1\" to 4\" egg-shaped river rock in natural tan and brown tones. Bold statement piece for landscape beds, garden edging, and water features. Smooth, rounded surfaces add a refined, natural look to any outdoor space.",
+      "prices": {
+        "1": 389,
+        "2": 548,
+        "3": 707,
+        "4": 866,
+        "5": 1025,
+        "5.5": 1104.5
+      }
+    },
+    "washed-pea-gravel": {
+      "name": "Washed Pea Gravel",
+      "type": "aggregate",
+      "category": "decorative",
+      "images": ["pea-sand.jpg"],
+      "description": "Small, smooth, washed pea-sized gravel. Comfortable for walking areas, excellent for drainage, and attractive as a decorative ground cover. Popular for pathways, playgrounds, dog runs, and landscape beds.",
+      "prices": {
+        "1": 278,
+        "2": 326,
+        "3": 374,
+        "4": 422,
+        "5": 470,
+        "5.5": 494
       }
     },
     "dumpster": {
