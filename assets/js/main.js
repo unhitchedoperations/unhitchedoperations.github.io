@@ -340,3 +340,4 @@ function toggleTheme() {
     btn.title = next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
   }
 }
+window.toggleTheme = toggleTheme;
